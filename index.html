@@ -1,1086 +1,1518 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CreateYourSong | Personalized Songs Made For You</title>
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🎵</text></svg>">
-
-    <style>
-        /* ============================================
-           PINK & WHITE PALETTE ONLY
-           ============================================ */
-        :root {
-            --pink: #ff4d94;
-            --pink-dark: #e0357a;
-            --pink-deep: #c92666;
-            --pink-light: #ffe4f0;
-            --pink-soft: #fff0f7;
-            --pink-glow: rgba(255, 77, 148, 0.15);
-            --pink-glow-strong: rgba(255, 77, 148, 0.35);
-            --white: #ffffff;
-            --white-soft: #fffafc;
-            --text-dark: #4a1a2e;
-            --text-body: #7a5568;
-            --text-muted: #a88594;
-            --border-pink: rgba(255, 77, 148, 0.12);
-            --border-pink-strong: rgba(255, 77, 148, 0.25);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--white-soft);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ====== GLOBAL ====== */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .section-padding {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-size: 2.6rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            letter-spacing: -0.03em;
-        }
-
-        .section-subtitle {
-            font-size: 1.08rem;
-            color: var(--text-body);
-            max-width: 620px;
-            margin: 0 auto 3.5rem auto;
-            font-weight: 400;
-            line-height: 1.7;
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, var(--pink), #ff8ab8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .bg-soft-pink {
-            background: var(--pink-soft);
-        }
-
-        /* ====== BUTTONS ====== */
-        .btn-primary-custom {
-            background: linear-gradient(145deg, var(--pink), var(--pink-dark));
-            border: none;
-            color: #fff;
-            font-weight: 600;
-            padding: 0.95rem 2.5rem;
-            border-radius: 50px;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 12px 28px -8px var(--pink-glow-strong);
-            font-size: 1rem;
-            letter-spacing: 0.3px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary-custom::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .btn-primary-custom:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary-custom:hover {
-            background: linear-gradient(145deg, #f03d85, var(--pink-deep));
-            transform: translateY(-3px);
-            box-shadow: 0 18px 36px -8px rgba(255, 77, 148, 0.5);
-            color: #fff;
-        }
-
-        .btn-outline-custom {
-            border: 2px solid var(--pink);
-            color: var(--pink);
-            font-weight: 600;
-            padding: 0.85rem 2.3rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-
-        .btn-outline-custom:hover {
-            background: var(--pink);
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px -8px var(--pink-glow-strong);
-        }
-
-        /* ====== NAVBAR ====== */
-        .navbar-custom {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border-pink);
-            padding: 16px 0;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 1.65rem;
-            color: var(--text-dark) !important;
-            letter-spacing: -0.03em;
-        }
-
-        .navbar-brand span {
-            background: linear-gradient(135deg, var(--pink), #ff8ab8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            color: var(--text-dark) !important;
-            margin: 0 8px;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-            position: relative;
-            padding: 0.5rem 0.2rem;
-        }
-
-        .nav-link:hover {
-            color: var(--pink) !important;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--pink), #ff8ab8);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-            border-radius: 4px;
-        }
-
-        .nav-link:hover::after {
-            width: 80%;
-        }
-
-        /* ====== HERO ====== */
-        .hero-section {
-            background: linear-gradient(165deg, #fff0f7 0%, #ffffff 65%);
-            padding: 150px 0 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -25%;
-            right: -12%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 77, 148, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 138, 184, 0.12) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-25px) scale(1.05); }
-        }
-
-        .hero-headline {
-            font-size: 3.8rem;
-            font-weight: 800;
-            line-height: 1.12;
-            color: var(--text-dark);
-            letter-spacing: -0.035em;
-        }
-
-        .hero-headline .highlight {
-            background: linear-gradient(135deg, var(--pink), #ff8ab8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-subtext {
-            font-size: 1.12rem;
-            color: var(--text-body);
-            line-height: 1.75;
-            max-width: 540px;
-            font-weight: 400;
-            margin: 1.6rem 0 2.2rem 0;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 48px;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-pink);
-        }
-
-        .hero-stats .stat-item h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--pink);
-            margin-bottom: 0;
-            letter-spacing: -0.03em;
-        }
-
-        .hero-stats .stat-item p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 0;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-        }
-
-        .hero-visual {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-visual .emoji-main {
-            font-size: 11rem;
-            line-height: 1;
-            filter: drop-shadow(0 20px 40px rgba(255, 77, 148, 0.25));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .hero-visual .emoji-sub {
-            font-size: 5.5rem;
-            line-height: 1;
-            margin-top: -40px;
-            filter: drop-shadow(0 15px 30px rgba(255, 77, 148, 0.2));
-            animation: float 7s ease-in-out infinite reverse;
-        }
-
-        /* ====== FEATURES ====== */
-        .feature-card {
-            background: var(--white);
-            border-radius: 28px;
-            padding: 2.4rem 2rem;
-            box-shadow: 0 10px 32px -10px rgba(255, 77, 148, 0.06);
-            border: 1px solid var(--border-pink);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--pink), #ff8ab8);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 28px 56px -16px rgba(255, 77, 148, 0.18);
-            border-color: var(--border-pink-strong);
-        }
-
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #ffe4f0, #ffd0e4);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--pink);
-            margin-bottom: 1.6rem;
-            transition: all 0.35s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            background: linear-gradient(135deg, var(--pink), var(--pink-dark));
-            color: #fff;
-            transform: scale(1.08) rotate(-3deg);
-            box-shadow: 0 12px 28px -8px var(--pink-glow-strong);
-        }
-
-        .feature-card h5 {
-            font-size: 1.22rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: var(--text-dark);
-        }
-
-        .feature-card p {
-            font-size: 0.94rem;
-            color: var(--text-body);
-            line-height: 1.7;
-            margin-bottom: 0;
-            font-weight: 400;
-        }
-
-        /* ====== HOW IT WORKS ====== */
-        .step-card {
-            text-align: center;
-            padding: 2.2rem 1.5rem;
-            position: relative;
-            border-radius: 24px;
-            transition: all 0.35s ease;
-        }
-
-        .step-card:hover {
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 16px 40px -16px rgba(255, 77, 148, 0.12);
-            transform: translateY(-5px);
-        }
-
-        .step-number {
-            width: 74px;
-            height: 74px;
-            background: linear-gradient(145deg, var(--pink), var(--pink-dark));
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.7rem;
-            font-weight: 700;
-            margin: 0 auto 1.6rem auto;
-            box-shadow: 0 14px 28px -8px var(--pink-glow-strong);
-            position: relative;
-            transition: all 0.35s ease;
-        }
-
-        .step-card:hover .step-number {
-            transform: scale(1.1);
-            box-shadow: 0 18px 36px -8px rgba(255, 77, 148, 0.5);
-        }
-
-        .step-card h5 {
-            font-size: 1.18rem;
-            font-weight: 700;
-            margin-bottom: 0.7rem;
-            color: var(--text-dark);
-        }
-
-        .step-card p {
-            font-size: 0.92rem;
-            color: var(--text-body);
-            line-height: 1.7;
-            margin-bottom: 0;
-            font-weight: 400;
-        }
-
-        /* ====== CTA BANNER ====== */
-        .cta-banner {
-            background: linear-gradient(145deg, var(--pink-deep), #a81d55);
-            border-radius: 36px;
-            padding: 80px 60px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 30px 60px -20px rgba(201, 38, 102, 0.4);
-        }
-
-        .cta-banner::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            right: -12%;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 9s ease-in-out infinite;
-        }
-
-        .cta-banner::after {
-            content: '';
-            position: absolute;
-            bottom: -35%;
-            left: -8%;
-            width: 380px;
-            height: 380px;
-            background: radial-gradient(circle, rgba(255, 138, 184, 0.25) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 11s ease-in-out infinite reverse;
-        }
-
-        .cta-banner h2 {
-            color: #fff;
-            font-size: 2.6rem;
-            font-weight: 800;
-            position: relative;
-            z-index: 2;
-            letter-spacing: -0.03em;
-        }
-
-        .cta-banner p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.08rem;
-            position: relative;
-            z-index: 2;
-            max-width: 520px;
-            margin: 0 auto 2rem auto;
-            font-weight: 400;
-            line-height: 1.7;
-        }
-
-        .cta-banner .btn-primary-custom {
-            position: relative;
-            z-index: 2;
-            background: #fff;
-            color: var(--pink-deep);
-            box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.25);
-        }
-
-        .cta-banner .btn-primary-custom::before {
-            background: linear-gradient(90deg, transparent, rgba(255, 77, 148, 0.1), transparent);
-        }
-
-        .cta-banner .btn-primary-custom:hover {
-            background: #fff0f7;
-            transform: translateY(-4px);
-            color: var(--pink-deep);
-            box-shadow: 0 22px 44px -10px rgba(0, 0, 0, 0.35);
-        }
-
-        /* ====== TESTIMONIALS ====== */
-        .testimonial-card {
-            background: var(--white);
-            border-radius: 28px;
-            padding: 2.2rem 2rem;
-            box-shadow: 0 10px 32px -10px rgba(255, 77, 148, 0.06);
-            border: 1px solid var(--border-pink);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100%;
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 12px;
-            right: 24px;
-            font-size: 4.5rem;
-            font-weight: 800;
-            color: rgba(255, 77, 148, 0.08);
-            line-height: 1;
-            font-family: Georgia, serif;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 48px -14px rgba(255, 77, 148, 0.16);
-            border-color: var(--border-pink-strong);
-        }
-
-        .testimonial-card .stars {
-            color: #ffb340;
-            font-size: 0.95rem;
-            margin-bottom: 1.2rem;
-            letter-spacing: 2px;
-        }
-
-        .testimonial-card p {
-            font-size: 0.95rem;
-            color: var(--text-body);
-            line-height: 1.75;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .testimonial-card .author {
-            font-weight: 700;
-            font-size: 0.92rem;
-            color: var(--text-dark);
-            margin-bottom: 0.1rem;
-        }
-
-        .testimonial-card .author-role {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        /* ====== FOOTER ====== */
-        .footer {
-            background: var(--pink-deep);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 80px 0 35px 0;
-            position: relative;
-        }
-
-        .footer h5 {
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.2px;
-        }
-
-        .footer a {
-            color: rgba(255, 255, 255, 0.65);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.25s ease;
-            display: inline-block;
-            margin-bottom: 0.7rem;
-            font-weight: 400;
-        }
-
-        .footer a:hover {
-            color: #ffd0e4;
-            transform: translateX(4px);
-        }
-
-        .footer .brand-footer {
-            font-weight: 800;
-            font-size: 1.65rem;
-            color: #fff;
-            letter-spacing: -0.03em;
-            margin-bottom: 1rem;
-        }
-
-        .footer .brand-footer span {
-            background: linear-gradient(135deg, #ffe4f0, #ff8ab8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 28px;
-            margin-top: 55px;
-        }
-
-        .footer-bottom p {
-            font-size: 0.85rem;
-            margin-bottom: 0;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 400;
-        }
-
-        .social-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.1rem;
-            margin-right: 10px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-icon:hover {
-            background: #fff;
-            color: var(--pink-deep);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.3);
-            border-color: #fff;
-        }
-
-        /* ====== NEWSLETTER INPUT ====== */
-        .newsletter-input {
-            background: rgba(255, 255, 255, 0.12);
-            color: #fff;
-            font-size: 0.9rem;
-            padding: 0.75rem 1.3rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-input:focus {
-            background: rgba(255, 255, 255, 0.18);
-            border-color: #fff;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
-            color: #fff;
-            outline: none;
-        }
-
-        .newsletter-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* ====== SCROLLBAR ====== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--pink-soft);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--pink), var(--pink-dark));
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--pink-dark);
-        }
-
-        /* ====== RESPONSIVE ====== */
-        @media (max-width: 991px) {
-            .hero-headline {
-                font-size: 2.7rem;
-            }
-
-            .hero-section {
-                padding: 120px 0 75px 0;
-            }
-
-            .section-title {
-                font-size: 2.1rem;
-            }
-
-            .cta-banner {
-                padding: 55px 35px;
-            }
-
-            .cta-banner h2 {
-                font-size: 2rem;
-            }
-
-            .hero-stats {
-                gap: 32px;
-            }
-
-            .navbar-collapse {
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(14px);
-                border-radius: 16px;
-                padding: 20px;
-                margin-top: 12px;
-                border: 1px solid var(--border-pink);
-                box-shadow: 0 16px 40px -12px rgba(255, 77, 148, 0.1);
-            }
-        }
-
-        @media (max-width: 575px) {
-            .hero-headline {
-                font-size: 2.1rem;
-            }
-
-            .hero-subtext {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .section-padding {
-                padding: 65px 0;
-            }
-
-            .hero-stats {
-                flex-wrap: wrap;
-                gap: 22px;
-            }
-
-            .hero-stats .stat-item h3 {
-                font-size: 1.5rem;
-            }
-
-            .cta-banner h2 {
-                font-size: 1.55rem;
-            }
-
-            .cta-banner {
-                padding: 45px 22px;
-                border-radius: 24px;
-            }
-
-            .feature-card, .testimonial-card {
-                padding: 1.8rem 1.5rem;
-            }
-        }
-
-        ::selection {
-            background: var(--pink);
-            color: #fff;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CreateYourSong | Personalized Songs Made For You</title>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+
+:root {
+    --pink: #ff4d94;
+    --pink-dark: #e0357a;
+    --pink-deep: #c92666;
+    --pink-light: #ffe4f0;
+    --pink-soft: #fff0f7;
+    --white-soft: #fffafc;
+    --text-dark: #4a1a2e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    background: var(--white-soft);
+    overflow-x: hidden;
+}
+
+/* ================================
+   ANIMATED BACKGROUND
+================================ */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 77, 148, 0.08);
+    border-radius: 50%;
+    top: 10%;
+    left: -180px;
+    filter: blur(20px);
+    animation: moveBlob 8s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    background: rgba(255, 77, 148, 0.07);
+    border-radius: 50%;
+    right: -150px;
+    bottom: 5%;
+    filter: blur(20px);
+    animation: moveBlob2 10s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+@keyframes moveBlob {
+    from {
+        transform: translateY(0) scale(1);
+    }
+    to {
+        transform: translateY(120px) scale(1.2);
+    }
+}
+
+@keyframes moveBlob2 {
+    from {
+        transform: translateY(0) scale(1);
+    }
+    to {
+        transform: translateY(-100px) scale(1.15);
+    }
+}
+
+/* ================================
+   LOGIN PAGE
+================================ */
+
+#loginPage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(circle at top left, #ffe4f0, transparent 40%),
+        radial-gradient(circle at bottom right, #fff0f7, transparent 40%),
+        #fffafc;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Floating notes */
+
+.music-note {
+    position: absolute;
+    color: var(--pink);
+    opacity: 0.25;
+    font-size: 30px;
+    animation: floatNote 7s linear infinite;
+}
+
+.note1 {
+    left: 10%;
+    bottom: -50px;
+    animation-delay: 0s;
+}
+
+.note2 {
+    left: 25%;
+    bottom: -50px;
+    animation-delay: 2s;
+}
+
+.note3 {
+    right: 20%;
+    bottom: -50px;
+    animation-delay: 4s;
+}
+
+.note4 {
+    right: 8%;
+    bottom: -50px;
+    animation-delay: 1s;
+}
+
+@keyframes floatNote {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.25;
+    }
+
+    80% {
+        opacity: 0.25;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(30deg);
+        opacity: 0;
+    }
+}
+
+/* Login card */
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    background: rgba(255,255,255,0.92);
+    padding: 42px 35px;
+    border-radius: 28px;
+    box-shadow: 0 25px 70px rgba(201, 38, 102, 0.15);
+    border: 1px solid rgba(255, 77, 148, 0.12);
+    animation: loginAppear 1s ease;
+    position: relative;
+    z-index: 5;
+}
+
+@keyframes loginAppear {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.logo-icon {
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+    color: white;
+    border-radius: 22px;
+    font-size: 34px;
+    box-shadow: 0 12px 30px rgba(255,77,148,0.35);
+    animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+.login-title {
+    font-size: 29px;
+    font-weight: 800;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #8c6475;
+    margin-bottom: 30px;
+}
+
+.form-control {
+    border-radius: 14px;
+    padding: 13px 15px;
+    border: 1px solid #f0ccd9;
+}
+
+.form-control:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 4px rgba(255,77,148,0.10);
+}
+
+.login-btn {
+    width: 100%;
+    border: none;
+    padding: 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(255,77,148,0.25);
+}
+
+.login-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(255,77,148,0.35);
+}
+
+.login-btn:active {
+    transform: scale(0.97);
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+    color: #997080;
+}
+
+/* ================================
+   WEBSITE
+================================ */
+
+#website {
+    display: none;
+}
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 3px 20px rgba(201,38,102,0.08);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    color: var(--pink-deep) !important;
+    font-weight: 800;
+    font-size: 23px;
+}
+
+.navbar-brand i {
+    margin-right: 7px;
+}
+
+.nav-link {
+    color: var(--text-dark) !important;
+    font-weight: 500;
+    margin: 0 7px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--pink) !important;
+    transform: translateY(-2px);
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+    color: white !important;
+    border-radius: 25px;
+    padding: 9px 20px !important;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255,77,148,0.3);
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 70px);
+    font-weight: 800;
+    line-height: 1.1;
+    animation: heroText 1s ease;
+}
+
+.hero h1 span {
+    color: var(--pink);
+}
+
+.hero p {
+    color: #755464;
+    font-size: 18px;
+    max-width: 600px;
+    margin-top: 20px;
+    animation: heroText 1.2s ease;
+}
+
+@keyframes heroText {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-main {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    margin-top: 25px;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(255,77,148,0.25);
+}
+
+.btn-main:hover {
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255,77,148,0.35);
+}
+
+.btn-outline {
+    display: inline-block;
+    color: var(--pink-deep);
+    text-decoration: none;
+    padding: 13px 27px;
+    border: 2px solid var(--pink);
+    border-radius: 30px;
+    font-weight: 600;
+    margin-top: 25px;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: var(--pink);
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* Music visual */
+
+.music-visual {
+    width: 350px;
+    height: 350px;
+    margin: auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffe4f0, #fff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: visualFloat 4s ease-in-out infinite;
+    box-shadow: 0 25px 70px rgba(255,77,148,0.18);
+}
+
+.music-visual::before,
+.music-visual::after {
+    content: "";
+    position: absolute;
+    border: 2px solid rgba(255,77,148,0.25);
+    border-radius: 50%;
+    animation: ripple 3s infinite;
+}
+
+.music-visual::before {
+    width: 430px;
+    height: 430px;
+}
+
+.music-visual::after {
+    width: 500px;
+    height: 500px;
+    animation-delay: 1s;
+}
+
+.music-visual i {
+    font-size: 130px;
+    color: var(--pink);
+    animation: musicIcon 2s ease-in-out infinite;
+}
+
+@keyframes visualFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-18px);
+    }
+}
+
+@keyframes musicIcon {
+    0%,100% {
+        transform: rotate(-5deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* ================================
+   STATS
+================================ */
+
+.stats {
+    margin-top: 50px;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 15px;
+}
+
+.stat-box h3 {
+    color: var(--pink-deep);
+    font-weight: 800;
+    font-size: 28px;
+}
+
+.stat-box p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* ================================
+   SECTIONS
+================================ */
+
+.section {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.section-title h2 {
+    font-weight: 800;
+    font-size: 38px;
+}
+
+.section-title span {
+    color: var(--pink);
+}
+
+.section-title p {
+    color: #806575;
+    margin-top: 10px;
+}
+
+/* ================================
+   FEATURE CARDS
+================================ */
+
+.feature-card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 22px;
+    text-align: center;
+    height: 100%;
+    border: 1px solid #ffe1ec;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pink), var(--pink-deep));
+    top: 0;
+    left: -100%;
+    transition: 0.4s;
+}
+
+.feature-card:hover::before {
+    left: 0;
+}
+
+.feature-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 45px rgba(201,38,102,0.13);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    margin: auto auto 20px;
+    background: var(--pink-light);
+    color: var(--pink-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 30px;
+    transition: 0.4s;
+}
+
+.feature-card:hover .feature-icon {
+    transform: rotate(8deg) scale(1.12);
+    background: var(--pink);
+    color: white;
+}
+
+.feature-card h4 {
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #806575;
+    font-size: 14px;
+}
+
+/* ================================
+   HOW IT WORKS
+================================ */
+
+.step {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.step-number {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(255,77,148,0.25);
+    transition: 0.4s;
+}
+
+.step:hover .step-number {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.step h4 {
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+.step p {
+    color: #806575;
+    font-size: 14px;
+}
+
+/* ================================
+   TESTIMONIALS
+================================ */
+
+.testimonial-card {
+    background: white;
+    padding: 30px;
+    border-radius: 22px;
+    border: 1px solid #ffe1ec;
+    height: 100%;
+    transition: 0.4s;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(201,38,102,0.12);
+}
+
+.stars {
+    color: #ffb400;
+    margin-bottom: 15px;
+}
+
+.testimonial-card p {
+    color: #725465;
+    font-size: 14px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.user-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--pink-light);
+    color: var(--pink-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* ================================
+   CTA
+================================ */
+
+.cta {
+    margin: 60px auto;
+    max-width: 1000px;
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+    color: white;
+    padding: 65px 30px;
+    border-radius: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta::before,
+.cta::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+}
+
+.cta::before {
+    width: 250px;
+    height: 250px;
+    left: -100px;
+    top: -100px;
+}
+
+.cta::after {
+    width: 300px;
+    height: 300px;
+    right: -120px;
+    bottom: -150px;
+}
+
+.cta h2 {
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+}
+
+.cta p {
+    position: relative;
+    z-index: 2;
+}
+
+.cta .btn {
+    background: white;
+    color: var(--pink-deep);
+    border: none;
+    border-radius: 30px;
+    padding: 13px 28px;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.cta .btn:hover {
+    transform: translateY(-4px) scale(1.04);
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    background: #fff;
+    border-top: 1px solid #ffe1ec;
+    padding: 35px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    color: #806575;
+    font-size: 14px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 991px) {
+
+    .hero {
+        text-align: center;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .music-visual {
+        margin-top: 80px;
+        width: 280px;
+        height: 280px;
+    }
+
+    .music-visual i {
+        font-size: 100px;
+    }
+
+    .music-visual::before {
+        width: 340px;
+        height: 340px;
+    }
+
+    .music-visual::after {
+        width: 390px;
+        height: 390px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .login-card {
+        margin: 20px;
+        padding: 35px 25px;
+    }
+
+    .hero {
+        padding: 60px 15px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .btn-outline {
+        margin-left: 0;
+    }
+
+    .section {
+        padding: 70px 15px;
+    }
+
+    .section-title h2 {
+        font-size: 30px;
+    }
+
+    .music-visual {
+        width: 240px;
+        height: 240px;
+    }
+
+    .music-visual::before {
+        width: 290px;
+        height: 290px;
+    }
+
+    .music-visual::after {
+        width: 330px;
+        height: 330px;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- ============================= -->
-    <!-- NAVBAR                        -->
-    <!-- ============================= -->
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                Create<span>YourSong</span>
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#mainNav" aria-controls="mainNav"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+<!-- ==========================================
+     LOGIN PAGE
+========================================== -->
+
+<section id="loginPage">
+
+    <div class="music-note note1">♪</div>
+    <div class="music-note note2">♫</div>
+    <div class="music-note note3">♪</div>
+    <div class="music-note note4">♫</div>
+
+    <div class="login-card">
+
+        <div class="logo-icon">
+            <i class="bi bi-music-note-beamed"></i>
+        </div>
+
+        <h1 class="login-title">
+            CreateYourSong
+        </h1>
+
+        <p class="login-subtitle">
+            Turn your special moments into music 💗
+        </p>
+
+        <form id="loginForm">
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    placeholder="Enter your password"
+                    minlength="6"
+                    required
+                >
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+                    <input type="checkbox" id="remember">
+                    <label for="remember" class="small">
+                        Remember me
+                    </label>
+                </div>
+
+                <span class="small" style="color:#e0357a;">
+                    Forgot password?
+                </span>
+
+            </div>
+
+            <button type="submit" class="login-btn">
+                <i class="bi bi-box-arrow-in-right"></i>
+                Login
             </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#how-it-works">How It Works</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Testimonials</a>
-                    </li>
-                    <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
-                        <a class="btn btn-primary-custom btn-sm px-4 py-2" href="reviews.html">review&rating</a>
-                    </li>
-                </ul>
-            </div>
+
+            <p id="loginMessage" class="text-center mt-3"></p>
+
+        </form>
+
+        <div class="login-footer">
+            Made with 💗 for music lovers
         </div>
-    </nav>
 
-    <!-- ============================= -->
-    <!-- HERO                          -->
-    <!-- ============================= -->
-    <section class="hero-section">
-        <div class="container position-relative" style="z-index: 2;">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="hero-headline">
-                        Your Story, <br>
-                        <span class="highlight">Turned Into Song</span>
-                    </h1>
-                    <p class="hero-subtext">
-                        CreateYourSong crafts fully personalized, studio-quality songs
-                        for birthdays, weddings, anniversaries, and every moment that
-                        deserves its own soundtrack. Just share your story — we'll
-                        compose the melody.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="create1.html" class="btn btn-primary-custom">
-                            Create Your Song <i class="bi bi-arrow-right ms-1"></i>
-                        </a>
-                        <a href="#how-it-works" class="btn btn-outline-custom">
-                            See How It Works
-                        </a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <h3>12k+</h3>
-                            <p>Songs Created</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>4.9★</h3>
-                            <p>Customer Rating</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>48h</h3>
-                            <p>Avg. Delivery</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 d-none d-lg-block">
-                    <div class="hero-visual">
-                        <div class="emoji-main">🎵</div>
-                        <div class="emoji-sub">🎤✨</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <!-- ============================= -->
-    <!-- FEATURES                      -->
-    <!-- ============================= -->
-    <section class="section-padding bg-soft-pink" id="features">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Why Choose <span class="text-gradient">CreateYourSong</span></h2>
-                <p class="section-subtitle">
-                    We blend professional songwriting, studio production, and your
-                    unique story to create a song you'll treasure forever.
-                </p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-music-note-beamed"></i>
-                        </div>
-                        <h5>100% Personalized</h5>
-                        <p>
-                            Every lyric, melody, and chord is crafted around your
-                            story, names, and special moments.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-mic"></i>
-                        </div>
-                        <h5>Studio Quality</h5>
-                        <p>
-                            Professional vocalists and producers deliver a
-                            radio-ready track you'll be proud to share.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-lightning-charge"></i>
-                        </div>
-                        <h5>Fast Turnaround</h5>
-                        <p>
-                            Get your finished song delivered within 48–72 hours,
-                            with unlimited revisions available.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-heart"></i>
-                        </div>
-                        <h5>Made With Love</h5>
-                        <p>
-                            Over 12,000 happy customers have gifted a song that
-                            made someone cry happy tears.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</section>
 
-    <!-- ============================= -->
-    <!-- HOW IT WORKS                  -->
-    <!-- ============================= -->
-    <section class="section-padding" id="how-it-works">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">How It <span class="text-gradient">Works</span></h2>
-                <p class="section-subtitle">
-                    From your story to a finished song — it's simple, fast, and
-                    unforgettable.
-                </p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <h5>Share Your Story</h5>
-                        <p>
-                            Tell us about the person, the occasion, and the
-                            details that make it special.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <h5>Pick a Style</h5>
-                        <p>
-                            Choose from pop, acoustic, rock, country, R&amp;B,
-                            or let us recommend the perfect vibe.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <h5>We Compose</h5>
-                        <p>
-                            Our songwriters and producers craft your custom
-                            track with professional vocals.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="step-card">
-                        <div class="step-number">4</div>
-                        <h5>Receive &amp; Share</h5>
-                        <p>
-                            Get your studio-quality song delivered to your
-                            inbox — ready to gift and treasure.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ============================= -->
-    <!-- TESTIMONIALS                  -->
-    <!-- ============================= -->
-    <section class="section-padding bg-soft-pink" id="testimonials">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Loved by <span class="text-gradient">Thousands</span></h2>
-                <p class="section-subtitle">
-                    Real stories from people who turned a moment into a melody.
-                </p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="testimonial-card">
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                        <p>
-                            "I surprised my wife with a song for our 10th
-                            anniversary. She cried happy tears. The lyrics
-                            captured our story perfectly."
-                        </p>
-                        <p class="author mb-0">— kiran R.</p>
-                        <span class="author-role">Anniversary Gift</span>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="testimonial-card">
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                        <p>
-                            "My daughter's birthday song was beyond anything
-                            I imagined. The production quality is incredible.
-                            Worth every penny."
-                        </p>
-                        <p class="author mb-0">— Priya M.</p>
-                        <span class="author-role">Birthday Song</span>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="testimonial-card">
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                        <p>
-                            "I proposed with a custom song. She said yes before
-                            the chorus even hit. Best decision I ever made."
-                        </p>
-                        <p class="author mb-0">— asif K.</p>
-                        <span class="author-role">Proposal Song</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ==========================================
+     MAIN WEBSITE
+========================================== -->
 
-    <!-- ============================= -->
-    <!-- CTA BANNER                    -->
-    <!-- ============================= -->
-    <section class="section-padding" id="get-started">
-        <div class="container">
-            <div class="cta-banner text-center">
-                <h2>Ready to Hear Your Story in Song?</h2>
-                <p>
-                    Join thousands of happy customers. Your personalized song is
-                    just a few clicks away.
-                </p>
-                <a href="create1.html" class="btn btn-primary-custom btn-lg px-5 py-3">
-                    Start Creating <i class="bi bi-arrow-right ms-1"></i>
-                </a>
-                <p class="mt-4 mb-0" style="font-size: 0.85rem; color: rgba(255,255,255,0.7); position: relative; z-index: 2;">
-                    <i class="bi bi-shield-check me-1"></i> 100% satisfaction guarantee
-                </p>
-            </div>
-        </div>
-    </section>
+<div id="website">
 
-    <!-- ============================= -->
-    <!-- FOOTER                        -->
-    <!-- ============================= -->
+<!-- NAVBAR -->
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<nav class="navbar navbar-expand-lg">
+
+<div class="container">
+
+<a class="navbar-brand" href="#home">
+    <i class="bi bi-music-note-beamed"></i>
+    CreateYourSong
+</a>
+
+<button
+class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#navbarNav">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse" id="navbarNav">
+
+<ul class="navbar-nav ms-auto align-items-lg-center">
+
+<li class="nav-item">
+<a class="nav-link" href="#home">Home</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#features">Features</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#how-it-works">How It Works</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#testimonials">Reviews</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="about.html">About</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link nav-btn" href="create1.html">
+    <i class="bi bi-music-note"></i>
+    Create Your Song
+</a>
+</li>
+
+</ul>
+
+</div>
+</div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-7">
+
+<h1>
+Your Story,
+<br>
+<span>Turned Into Song.</span>
+</h1>
+
+<p>
+Every person has a story worth singing.
+Tell us your special moment, and we will
+turn it into a personalized song made
+just for you. 🎶
+</p>
+
+<a href="create1.html" class="btn-main">
+    <i class="bi bi-music-note-beamed"></i>
+    Create Your Song
+</a>
+
+<a href="#how-it-works" class="btn-outline">
+    How It Works
+</a>
+
+<div class="row stats">
+
+<div class="col-4 stat-box">
+<h3>12K+</h3>
+<p>Songs Created</p>
+</div>
+
+<div class="col-4 stat-box">
+<h3>4.9★</h3>
+<p>Happy Customers</p>
+</div>
+
+<div class="col-4 stat-box">
+<h3>48h</h3>
+<p>Fast Delivery</p>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-lg-5">
+
+<div class="music-visual">
+
+<i class="bi bi-music-note-list"></i>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="section" id="features">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+Why Choose <span>CreateYourSong?</span>
+</h2>
+
+<p>
+Your memories deserve their own melody.
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-6 col-lg-3">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+<i class="bi bi-heart-fill"></i>
+</div>
+
+<h4>100% Personalized</h4>
+
+<p>
+Your story, your emotions, your memories —
+everything is created especially for you.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-3">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+<i class="bi bi-mic-fill"></i>
+</div>
+
+<h4>Studio Quality</h4>
+
+<p>
+Beautifully created songs with a professional
+and memorable sound.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-3">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+<i class="bi bi-lightning-charge-fill"></i>
+</div>
+
+<h4>Fast Turnaround</h4>
+
+<p>
+We work quickly to transform your special
+story into a beautiful song.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-3">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+<i class="bi bi-stars"></i>
+</div>
+
+<h4>Made With Love</h4>
+
+<p>
+Every song is created with creativity,
+emotion and attention to detail.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="section" id="how-it-works">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+How It <span>Works</span>
+</h2>
+
+<p>
+Creating your personalized song is simple.
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="step">
+
+<div class="step-number">1</div>
+
+<h4>Share Your Story</h4>
+
+<p>
+Tell us about the person, memory or
+special occasion.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<h4>Pick a Style</h4>
+
+<p>
+Choose the mood and musical style
+you want.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<h4>We Compose</h4>
+
+<p>
+We transform your story into your
+personalized song.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="step">
+
+<div class="step-number">4</div>
+
+<h4>Receive & Share</h4>
+
+<p>
+Get your song and share your special
+moment with loved ones.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
+
+<section class="section" id="testimonials">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+What Our <span>Customers Say</span>
+</h2>
+
+<p>
+Real stories. Real emotions. Real songs.
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="testimonial-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+"The song was such a beautiful surprise!
+It captured our story perfectly and made
+the moment unforgettable."
+</p>
+
+<div class="user">
+
+<div class="user-icon">
+<i class="bi bi-person-fill"></i>
+</div>
+
+<div>
+<strong>Kiran R.</strong>
+<br>
+<small>Happy Customer</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="testimonial-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+"I gave them a few memories and they
+turned them into something so emotional.
+Absolutely loved it!"
+</p>
+
+<div class="user">
+
+<div class="user-icon">
+<i class="bi bi-person-fill"></i>
+</div>
+
+<div>
+<strong>Priya M.</strong>
+<br>
+<small>Happy Customer</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="testimonial-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+"The perfect gift! Everyone loved the song
+and the personal touch made it very special."
+</p>
+
+<div class="user">
+
+<div class="user-icon">
+<i class="bi bi-person-fill"></i>
+</div>
+
+<div>
+<strong>Asif K.</strong>
+<br>
+<small>Happy Customer</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="container">
+
+<div class="cta">
+
+<h2>
+Ready to Create Your Song? 🎶
+</h2>
+
+<p>
+Your story is unique. Your song should be too.
+</p>
+
+<a href="create1.html" class="btn">
+Start Creating
+    <i class="bi bi-arrow-right"></i>
+</a>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container">
+
+<p>
+Made with 💗 for music lovers.
+</p>
+
+<p class="mt-2">
+<i class="bi bi-envelope"></i>
+support@createyoursong.com
+</p>
+
+</div>
+
+</footer>
+
+</div>
+
+
+<!-- BOOTSTRAP JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- LOGIN SCRIPT -->
+
+<script>
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const message = document.getElementById("loginMessage");
+
+    if (email === "" || password === "") {
+
+        message.style.color = "#e0357a";
+        message.textContent = "Please fill all fields.";
+
+        return;
+    }
+
+    if (password.length < 6) {
+
+        message.style.color = "#e0357a";
+        message.textContent =
+        "Password must contain at least 6 characters.";
+
+        return;
+    }
+
+    message.style.color = "#c92666";
+    message.innerHTML =
+    "✓ Login successful! Welcome to CreateYourSong 💗";
+
+    setTimeout(function() {
+
+        document.getElementById("loginPage").style.display = "none";
+
+        document.getElementById("website").style.display = "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }, 900);
+
+});
+
+</script>
 
 </body>
 </html>
