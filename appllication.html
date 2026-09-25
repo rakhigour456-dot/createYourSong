@@ -1,0 +1,1497 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Send My Song Request | SongCraft</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<style>
+
+/* =========================================
+   ROOT
+========================================= */
+
+:root {
+    --pink: #e91e63;
+    --dark-pink: #c2185b;
+    --light-pink: #fff0f5;
+    --soft-pink: #ffe4ed;
+    --border-pink: #f5c2d2;
+    --text: #292929;
+    --gray: #777;
+}
+
+
+/* =========================================
+   GENERAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: #fff;
+    color: var(--text);
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+    padding: 15px 0;
+    background: rgba(255,255,255,0.97) !important;
+}
+
+.navbar-brand {
+    font-size: 25px;
+    font-weight: 700;
+    color: #222;
+}
+
+.navbar-brand i {
+    color: var(--pink);
+    margin-right: 5px;
+}
+
+.navbar-brand span {
+    color: var(--pink);
+}
+
+.nav-link {
+    margin-left: 20px;
+    color: #444;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--pink);
+}
+
+.request-btn {
+    background: var(--pink);
+    color: white !important;
+    border-radius: 30px;
+    padding: 10px 22px !important;
+    transition: 0.3s;
+}
+
+.request-btn:hover {
+    background: var(--dark-pink);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.request-header {
+    position: relative;
+
+    padding: 155px 20px 85px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #ffe0eb,
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #fff5f8,
+            #ffffff
+        );
+
+    overflow: hidden;
+}
+
+.request-header::before {
+    content: "";
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background: #ffd6e4;
+
+    right: -80px;
+    top: 100px;
+
+    opacity: 0.5;
+}
+
+.music-icon {
+    position: relative;
+
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    color: var(--pink);
+
+    border-radius: 50%;
+
+    font-size: 34px;
+
+    box-shadow:
+        0 12px 35px rgba(233, 30, 99, 0.15);
+}
+
+.small-title {
+    color: var(--pink);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.request-header h1 {
+    margin-top: 12px;
+
+    font-size: 48px;
+
+    font-weight: 700;
+
+    color: #222;
+}
+
+.request-header h1::after {
+    content: "";
+
+    display: block;
+
+    width: 70px;
+    height: 4px;
+
+    background: var(--pink);
+
+    border-radius: 10px;
+
+    margin: 18px auto 0;
+}
+
+.request-header p {
+    max-width: 680px;
+
+    margin: 20px auto 0;
+
+    color: var(--gray);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   REQUEST SECTION
+========================================= */
+
+.request-section {
+    padding: 75px 20px;
+
+    background: #fff;
+}
+
+.request-card {
+
+    background: white;
+
+    padding: 48px;
+
+    border-radius: 25px;
+
+    border: 1px solid #f8dce6;
+
+    box-shadow:
+        0 20px 60px rgba(233, 30, 99, 0.08);
+}
+
+
+/* =========================================
+   FORM HEADING
+========================================= */
+
+.form-heading {
+    text-align: center;
+
+    margin-bottom: 42px;
+}
+
+.form-heading h2 {
+
+    font-weight: 700;
+
+    color: #222;
+}
+
+.form-heading h2 i {
+
+    color: var(--pink);
+
+    font-size: 21px;
+
+    margin-right: 5px;
+}
+
+.form-heading p {
+
+    color: var(--gray);
+
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   SECTION TITLES
+========================================= */
+
+.form-section-title {
+
+    padding-bottom: 14px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #f3d9e2;
+
+    color: #333;
+
+    font-weight: 700;
+}
+
+.form-section-title i {
+
+    color: var(--pink);
+
+    margin-right: 8px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+label {
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+    color: #333;
+}
+
+.form-control,
+.form-select {
+
+    min-height: 52px;
+
+    border: 1px solid #e8d4db;
+
+    border-radius: 12px;
+
+    padding: 12px 15px;
+
+    transition: 0.3s;
+
+    background: #fff;
+}
+
+.form-control:hover,
+.form-select:hover {
+
+    border-color: #efa4bb;
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: var(--pink);
+
+    box-shadow:
+        0 0 0 4px rgba(233, 30, 99, 0.10);
+}
+
+textarea.form-control {
+
+    min-height: 125px;
+
+    resize: vertical;
+}
+
+.form-control::placeholder {
+
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+small {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: #999;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   SUBMIT AREA
+========================================= */
+
+.submit-area {
+
+    text-align: center;
+
+    margin-top: 40px;
+}
+
+.submit-btn {
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ec407a,
+            #d81b60
+        );
+
+    color: white;
+
+    padding: 16px 38px;
+
+    border-radius: 35px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    box-shadow:
+        0 10px 25px rgba(233, 30, 99, 0.20);
+}
+
+.submit-btn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #d81b60,
+            #ad1457
+        );
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(233, 30, 99, 0.25);
+}
+
+.submit-btn i {
+
+    margin-right: 8px;
+}
+
+.submit-area p {
+
+    margin-top: 15px;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+.submit-area p i {
+
+    color: var(--pink);
+}
+
+
+/* =========================================
+   SUCCESS MODAL
+========================================= */
+
+.success-modal {
+
+    text-align: center;
+
+    padding: 45px 30px;
+
+    border: none;
+
+    border-radius: 25px;
+}
+
+.success-icon {
+
+    width: 80px;
+    height: 80px;
+
+    margin: auto;
+    margin-bottom: 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #ffe4ed;
+
+    color: var(--pink);
+
+    font-size: 36px;
+}
+
+.success-modal h3 {
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+.success-modal p {
+
+    color: var(--gray);
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+.close-btn {
+
+    background: var(--pink);
+
+    color: white;
+
+    border-radius: 30px;
+
+    padding: 11px 32px;
+
+    border: none;
+}
+
+.close-btn:hover {
+
+    background: var(--dark-pink);
+
+    color: white;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    background: #fff5f8;
+
+    border-top: 1px solid #f7dce6;
+
+    color: #666;
+
+    padding: 30px 20px;
+
+    text-align: center;
+}
+
+footer span {
+
+    color: var(--pink);
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .request-header {
+
+        padding-top: 135px;
+
+        padding-bottom: 60px;
+    }
+
+    .request-header h1 {
+
+        font-size: 34px;
+    }
+
+    .request-header p {
+
+        font-size: 15px;
+    }
+
+    .request-card {
+
+        padding: 28px 20px;
+
+        border-radius: 20px;
+    }
+
+    .nav-link {
+
+        margin-left: 0;
+
+        margin-top: 8px;
+    }
+
+    .request-btn {
+
+        display: inline-block;
+
+        margin-top: 10px;
+    }
+
+    .submit-btn {
+
+        width: 100%;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="index.html">
+
+            <i class="bi bi-music-note-beamed"></i>
+
+            Song<span>Craft</span>
+
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="appllication.html">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="about.html">
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="create.html">
+
+                        Create Song
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item ms-lg-3">
+
+                    <a
+                        href="send-request.html"
+                        class="btn request-btn">
+
+                        Send Request
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================
+     PAGE HEADER
+========================================= -->
+
+<section class="request-header">
+
+    <div class="container text-center">
+
+        <div class="music-icon">
+
+            <i class="bi bi-music-note-list"></i>
+
+        </div>
+
+
+        <span class="small-title">
+
+            CUSTOM SONG REQUEST
+
+        </span>
+
+
+        <h1>
+
+            Send Your Song Request
+
+        </h1>
+
+
+        <p>
+
+            Tell us about your special person, your memories
+            and the kind of song you want. We'll turn your story
+            into a beautiful personalized song.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     FORM
+========================================= -->
+
+<section class="request-section">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-9">
+
+                <div class="request-card">
+
+
+                    <!-- FORM HEADING -->
+
+                    <div class="form-heading">
+
+                        <h2>
+
+                            <i class="bi bi-heart-fill"></i>
+
+                            Tell Us Your Story
+
+                        </h2>
+
+                        <p>
+
+                            Fill in the details below and send us
+                            your custom song request.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <form id="songRequestForm">
+
+
+                        <!-- =================================
+                             YOUR INFORMATION
+                        ================================== -->
+
+                        <h5 class="form-section-title">
+
+                            <i class="bi bi-person"></i>
+
+                            Your Information
+
+                        </h5>
+
+
+                        <div class="row">
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="name">
+
+                                    Full Name *
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    class="form-control"
+                                    placeholder="Enter your name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="phone">
+
+                                    Phone Number *
+
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    class="form-control"
+                                    placeholder="Enter 10-digit phone number"
+                                    maxlength="10"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="email">
+
+                                    Email Address *
+
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    class="form-control"
+                                    placeholder="Enter your email"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="songFor">
+
+                                    Song For *
+
+                                </label>
+
+                                <select
+                                    id="songFor"
+                                    class="form-select"
+                                    required>
+
+                                    <option value="">
+
+                                        Select occasion
+
+                                    </option>
+
+                                    <option>Birthday</option>
+
+                                    <option>Wedding</option>
+
+                                    <option>Anniversary</option>
+
+                                    <option>Proposal</option>
+
+                                    <option>Friendship</option>
+
+                                    <option>Family</option>
+
+                                    <option>Baby / Newborn</option>
+
+                                    <option>Farewell</option>
+
+                                    <option>Other</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             SONG DETAILS
+                        ================================== -->
+
+                        <h5 class="form-section-title mt-4">
+
+                            <i class="bi bi-music-note"></i>
+
+                            Song Details
+
+                        </h5>
+
+
+                        <div class="mb-3">
+
+                            <label for="personName">
+
+                                Person's Name *
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="personName"
+                                class="form-control"
+                                placeholder="Who is this song for?"
+                                required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label for="relationship">
+
+                                Relationship
+
+                            </label>
+
+                            <select
+                                id="relationship"
+                                class="form-select">
+
+                                <option value="">
+
+                                    Select relationship
+
+                                </option>
+
+                                <option>Partner</option>
+
+                                <option>Husband / Wife</option>
+
+                                <option>Boyfriend / Girlfriend</option>
+
+                                <option>Best Friend</option>
+
+                                <option>Mother / Father</option>
+
+                                <option>Brother / Sister</option>
+
+                                <option>Family Member</option>
+
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label for="songType">
+
+                                What Type of Song Do You Want? *
+
+                            </label>
+
+                            <select
+                                id="songType"
+                                class="form-select"
+                                required>
+
+                                <option value="">
+
+                                    Choose song type
+
+                                </option>
+
+                                <option>Romantic</option>
+
+                                <option>Emotional</option>
+
+                                <option>Happy</option>
+
+                                <option>Funny</option>
+
+                                <option>Motivational</option>
+
+                                <option>Birthday Song</option>
+
+                                <option>Wedding Song</option>
+
+                                <option>Devotional</option>
+
+                                <option>Custom</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label for="musicStyle">
+
+                                Music Style
+
+                            </label>
+
+                            <select
+                                id="musicStyle"
+                                class="form-select">
+
+                                <option value="">
+
+                                    Choose music style
+
+                                </option>
+
+                                <option>Bollywood</option>
+
+                                <option>Acoustic</option>
+
+                                <option>Lo-Fi</option>
+
+                                <option>Pop</option>
+
+                                <option>Classical</option>
+
+                                <option>Rock</option>
+
+                                <option>Rap</option>
+
+                                <option>Instrumental</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- STORY -->
+
+                        <div class="mb-3">
+
+                            <label for="story">
+
+                                Tell Us Your Story *
+
+                            </label>
+
+                            <textarea
+                                id="story"
+                                class="form-control"
+                                rows="5"
+                                placeholder="Tell us about the person, your memories, special moments, feelings, how you met, funny moments, etc."
+                                required></textarea>
+
+                            <small>
+
+                                The more details you provide,
+                                the more personal your song can be.
+
+                            </small>
+
+                        </div>
+
+
+                        <!-- KEYWORDS -->
+
+                        <div class="mb-3">
+
+                            <label for="keywords">
+
+                                Important Names / Words
+
+                            </label>
+
+                            <textarea
+                                id="keywords"
+                                class="form-control"
+                                rows="3"
+                                placeholder="Example: Rahul, our first meeting, college days, forever, Goa trip..."></textarea>
+
+                        </div>
+
+
+                        <!-- MESSAGE -->
+
+                        <div class="mb-3">
+
+                            <label for="message">
+
+                                Any Special Message?
+
+                            </label>
+
+                            <textarea
+                                id="message"
+                                class="form-control"
+                                rows="3"
+                                placeholder="Write anything special you want included in the song..."></textarea>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             DELIVERY
+                        ================================== -->
+
+                        <h5 class="form-section-title mt-4">
+
+                            <i class="bi bi-clock"></i>
+
+                            Delivery Preference
+
+                        </h5>
+
+
+                        <div class="row">
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="date">
+
+                                    Required Date
+
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="date"
+                                    class="form-control">
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="language">
+
+                                    Preferred Language
+
+                                </label>
+
+                                <select
+                                    id="language"
+                                    class="form-select">
+
+                                    <option>Hindi</option>
+
+                                    <option>English</option>
+
+                                    <option>Marathi</option>
+
+                                    <option>Hinglish</option>
+
+                                    <option>Other</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             SUBMIT
+                        ================================== -->
+
+                        <div class="submit-area">
+
+                            <button
+                                type="submit"
+                                class="submit-btn">
+
+                                <i class="bi bi-send-fill"></i>
+
+                                Send My Song Request
+
+                            </button>
+
+
+                            <p>
+
+                                <i class="bi bi-shield-check"></i>
+
+                                Your information is kept private.
+
+                            </p>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     SUCCESS MODAL
+========================================= -->
+
+<div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1">
+
+    <div
+        class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content success-modal">
+
+
+            <div class="success-icon">
+
+                <i class="bi bi-check-lg"></i>
+
+            </div>
+
+
+            <h3>
+
+                Request Sent! 💗
+
+            </h3>
+
+
+            <p>
+
+                Thank you for your song request.
+
+                <br>
+
+                We have received your details and
+                will contact you soon.
+
+            </p>
+
+
+            <button
+                class="btn close-btn"
+                data-bs-dismiss="modal">
+
+                Done
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <p class="mb-0">
+
+        © 2026
+
+        <span>SongCraft</span>
+
+        · Create memories through music 🎵
+
+    </p>
+
+</footer>
+
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<script>
+
+/* =========================================
+   SONG REQUEST FORM
+========================================= */
+
+const form =
+    document.getElementById("songRequestForm");
+
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    /* Get required values */
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const songFor =
+        document.getElementById("songFor").value;
+
+    const personName =
+        document.getElementById("personName").value.trim();
+
+    const songType =
+        document.getElementById("songType").value;
+
+    const story =
+        document.getElementById("story").value.trim();
+
+
+    /* =================================
+       VALIDATION
+    ================================= */
+
+    if (
+        name === "" ||
+        phone === "" ||
+        email === "" ||
+        songFor === "" ||
+        personName === "" ||
+        songType === "" ||
+        story === ""
+    ) {
+
+        alert(
+            "Please fill all required fields."
+        );
+
+        return;
+    }
+
+
+    /* Phone validation */
+
+    const phonePattern =
+        /^[0-9]{10}$/;
+
+
+    if (!phonePattern.test(phone)) {
+
+        alert(
+            "Please enter a valid 10-digit phone number."
+        );
+
+        return;
+    }
+
+
+    /* =================================
+       CREATE REQUEST
+    ================================= */
+
+    const requestData = {
+
+        id: Date.now(),
+
+        name: name,
+
+        phone: phone,
+
+        email: email,
+
+        songFor: songFor,
+
+        personName: personName,
+
+        relationship:
+            document.getElementById(
+                "relationship"
+            ).value,
+
+        songType: songType,
+
+        musicStyle:
+            document.getElementById(
+                "musicStyle"
+            ).value,
+
+        story: story,
+
+        keywords:
+            document.getElementById(
+                "keywords"
+            ).value.trim(),
+
+        message:
+            document.getElementById(
+                "message"
+            ).value.trim(),
+
+        requiredDate:
+            document.getElementById(
+                "date"
+            ).value,
+
+        language:
+            document.getElementById(
+                "language"
+            ).value,
+
+        status: "New",
+
+        submittedAt:
+            new Date().toLocaleString()
+
+    };
+
+
+    /* =================================
+       SAVE REQUEST
+    ================================= */
+
+    let requests =
+        JSON.parse(
+            localStorage.getItem(
+                "songRequests"
+            )
+        ) || [];
+
+
+    requests.push(requestData);
+
+
+    localStorage.setItem(
+        "songRequests",
+        JSON.stringify(requests)
+    );
+
+
+    /* =================================
+       SUCCESS MESSAGE
+    ================================= */
+
+    const successModal =
+        new bootstrap.Modal(
+            document.getElementById(
+                "successModal"
+            )
+        );
+
+
+    successModal.show();
+
+
+    /* Reset form */
+
+    form.reset();
+
+});
+
+</script>
+
+
+</body>
+
+</html>
+```
