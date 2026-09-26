@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,6 +108,12 @@ h1,h2,h3,h4,h5,h6 {
     transform:translateY(-3px);
 }
 
+.btn-primary-custom:disabled {
+    opacity:.7;
+    cursor:not-allowed;
+    transform:none;
+}
+
 /* NAVBAR */
 
 .navbar-custom {
@@ -172,7 +177,11 @@ h1,h2,h3,h4,h5,h6 {
     height:500px;
     right:-150px;
     top:-150px;
-    background:radial-gradient(circle,rgba(255,77,148,.13),transparent 70%);
+    background:radial-gradient(
+        circle,
+        rgba(255,77,148,.13),
+        transparent 70%
+    );
     border-radius:50%;
 }
 
@@ -381,7 +390,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .filter-btn.active {
-    background:linear-gradient(145deg,var(--pink),var(--pink-dark));
+    background:linear-gradient(
+        145deg,
+        var(--pink),
+        var(--pink-dark)
+    );
     color:white;
     border-color:transparent;
 }
@@ -425,7 +438,11 @@ h1,h2,h3,h4,h5,h6 {
     width:52px;
     height:52px;
     border-radius:50%;
-    background:linear-gradient(145deg,var(--pink),var(--pink-dark));
+    background:linear-gradient(
+        145deg,
+        var(--pink),
+        var(--pink-dark)
+    );
     color:white;
     display:flex;
     align-items:center;
@@ -472,7 +489,11 @@ h1,h2,h3,h4,h5,h6 {
 /* STATS */
 
 .stats-strip {
-    background:linear-gradient(145deg,var(--pink-deep),#a81d55);
+    background:linear-gradient(
+        145deg,
+        var(--pink-deep),
+        #a81d55
+    );
     border-radius:32px;
     padding:55px 30px;
     color:white;
@@ -547,7 +568,9 @@ h1,h2,h3,h4,h5,h6 {
 .fade-up {
     opacity:0;
     transform:translateY(25px);
-    transition:opacity .7s ease,transform .7s ease;
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
 }
 
 .fade-up.visible {
@@ -555,7 +578,7 @@ h1,h2,h3,h4,h5,h6 {
     transform:translateY(0);
 }
 
-/* SUCCESS */
+/* SUCCESS OVERLAY */
 
 .success-overlay {
     position:fixed;
@@ -576,6 +599,21 @@ h1,h2,h3,h4,h5,h6 {
     border-radius:28px;
     text-align:center;
     box-shadow:0 25px 80px rgba(0,0,0,.25);
+    animation:successPop .45s ease;
+}
+
+@keyframes successPop {
+
+    from {
+        opacity:0;
+        transform:scale(.85) translateY(20px);
+    }
+
+    to {
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+
 }
 
 .success-icon {
@@ -668,7 +706,7 @@ h1,h2,h3,h4,h5,h6 {
 
 <body>
 
-<!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
 
 <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
 
@@ -713,7 +751,7 @@ Reviews
 </nav>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
 <section class="page-hero">
 
@@ -742,7 +780,7 @@ and share your own experience.
 </section>
 
 
-<!-- RATING SUMMARY -->
+<!-- ================= RATING SUMMARY ================= -->
 
 <div class="container">
 
@@ -757,11 +795,13 @@ and share your own experience.
 </div>
 
 <div class="rating-stars">
+
 <i class="bi bi-star-fill"></i>
 <i class="bi bi-star-fill"></i>
 <i class="bi bi-star-fill"></i>
 <i class="bi bi-star-fill"></i>
 <i class="bi bi-star-fill"></i>
+
 </div>
 
 <div class="rating-count">
@@ -773,44 +813,62 @@ Based on customer reviews
 <div class="col-md-8">
 
 <div class="rating-bar-item d-flex align-items-center gap-3">
+
 <span class="label">5 ★</span>
+
 <div class="rating-bar">
 <div class="rating-bar-fill" style="width:88%;"></div>
 </div>
+
 <span class="percent">88%</span>
+
 </div>
 
 <div class="rating-bar-item d-flex align-items-center gap-3">
+
 <span class="label">4 ★</span>
+
 <div class="rating-bar">
 <div class="rating-bar-fill" style="width:9%;"></div>
 </div>
+
 <span class="percent">9%</span>
+
 </div>
 
 <div class="rating-bar-item d-flex align-items-center gap-3">
+
 <span class="label">3 ★</span>
+
 <div class="rating-bar">
 <div class="rating-bar-fill" style="width:2%;"></div>
 </div>
+
 <span class="percent">2%</span>
+
 </div>
 
 <div class="rating-bar-item d-flex align-items-center gap-3">
+
 <span class="label">2 ★</span>
+
 <div class="rating-bar">
 <div class="rating-bar-fill" style="width:1%;"></div>
 </div>
+
 <span class="percent">1%</span>
+
 </div>
 
 <div class="rating-bar-item d-flex align-items-center gap-3">
+
 <span class="label">1 ★</span>
+
 <div class="rating-bar">
 <div class="rating-bar-fill" style="width:0%;"></div>
 </div>
+
 <span class="percent">0%</span>
-</div>
 
 </div>
 
@@ -820,8 +878,10 @@ Based on customer reviews
 
 </div>
 
+</div>
 
-<!-- WRITE REVIEW -->
+
+<!-- ================= WRITE REVIEW ================= -->
 
 <section class="section-padding bg-soft-pink" id="write-review">
 
@@ -830,25 +890,30 @@ Based on customer reviews
 <div class="text-center fade-up">
 
 <div class="page-hero-badge">
+
 <i class="bi bi-heart-fill"></i>
 YOUR FEEDBACK MATTERS
+
 </div>
 
 <h2 class="section-title">
+
 Share Your
 <span class="text-gradient">
 Experience
 </span>
+
 </h2>
 
 <p class="section-subtitle">
+
 Loved your song?
 Tell us about your experience.
 Your feedback means a lot to us.
+
 </p>
 
 </div>
-
 
 <div class="review-form-card fade-up">
 
@@ -870,7 +935,6 @@ required>
 
 </div>
 
-
 <div class="form-group-custom">
 
 <label for="customerOccasion">
@@ -886,34 +950,16 @@ required>
 Select occasion
 </option>
 
-<option value="Birthday">
-Birthday
-</option>
-
-<option value="Wedding">
-Wedding
-</option>
-
-<option value="Anniversary">
-Anniversary
-</option>
-
-<option value="Proposal">
-Proposal
-</option>
-
-<option value="Just Because">
-Just Because
-</option>
-
-<option value="Other">
-Other
-</option>
+<option value="Birthday">Birthday</option>
+<option value="Wedding">Wedding</option>
+<option value="Anniversary">Anniversary</option>
+<option value="Proposal">Proposal</option>
+<option value="Just Because">Just Because</option>
+<option value="Other">Other</option>
 
 </select>
 
 </div>
-
 
 <div class="form-group-custom">
 
@@ -951,7 +997,6 @@ Select a rating
 
 </div>
 
-
 <div class="form-group-custom">
 
 <label for="customerReview">
@@ -966,13 +1011,10 @@ maxlength="500"
 required></textarea>
 
 <div class="character-count">
-
 <span id="characterCount">0</span>/500
-
 </div>
 
 </div>
-
 
 <div class="text-center">
 
@@ -981,7 +1023,6 @@ type="submit"
 class="btn btn-primary-custom btn-lg">
 
 <i class="bi bi-send-fill me-2"></i>
-
 Submit Review
 
 </button>
@@ -997,7 +1038,7 @@ Submit Review
 </section>
 
 
-<!-- REVIEWS -->
+<!-- ================= REVIEWS ================= -->
 
 <section class="section-padding" id="reviews">
 
@@ -1022,9 +1063,6 @@ something special with us.
 </p>
 
 </div>
-
-
-<!-- FILTER -->
 
 <div class="filter-bar fade-up">
 
@@ -1058,9 +1096,7 @@ Other
 
 </div>
 
-
 <div class="row g-4">
-
 
 <!-- REVIEW 1 -->
 
@@ -1076,9 +1112,13 @@ Other
 
 <div>
 
-<div class="review-name">Ananya</div>
+<div class="review-name">
+Ananya
+</div>
 
-<div class="review-meta">Verified Customer</div>
+<div class="review-meta">
+Verified Customer
+</div>
 
 </div>
 
@@ -1089,9 +1129,11 @@ Other
 </div>
 
 <div class="review-text">
+
 The song was beautiful and very emotional.
 It made my birthday even more special.
 I absolutely loved it! ❤️
+
 </div>
 
 <div class="review-tag">
@@ -1117,9 +1159,13 @@ Birthday
 
 <div>
 
-<div class="review-name">Rahul</div>
+<div class="review-name">
+Rahul
+</div>
 
-<div class="review-meta">Verified Customer</div>
+<div class="review-meta">
+Verified Customer
+</div>
 
 </div>
 
@@ -1130,9 +1176,11 @@ Birthday
 </div>
 
 <div class="review-text">
+
 The personalized song was such a beautiful
 surprise. The lyrics felt very personal
 and meaningful.
+
 </div>
 
 <div class="review-tag">
@@ -1158,9 +1206,13 @@ Anniversary
 
 <div>
 
-<div class="review-name">Priya</div>
+<div class="review-name">
+Priya
+</div>
 
-<div class="review-meta">Verified Customer</div>
+<div class="review-meta">
+Verified Customer
+</div>
 
 </div>
 
@@ -1171,9 +1223,11 @@ Anniversary
 </div>
 
 <div class="review-text">
+
 Such a creative idea!
 The song captured the feelings perfectly.
 Thank you for creating something so special.
+
 </div>
 
 <div class="review-tag">
@@ -1191,6 +1245,8 @@ Wedding
 
 <div class="review-card fade-up">
 
+<div class="review-card fade-up">
+
 <div class="quote-mark">“</div>
 
 <div class="review-header">
@@ -1199,9 +1255,13 @@ Wedding
 
 <div>
 
-<div class="review-name">Sneha</div>
+<div class="review-name">
+Sneha
+</div>
 
-<div class="review-meta">Verified Customer</div>
+<div class="review-meta">
+Verified Customer
+</div>
 
 </div>
 
@@ -1212,9 +1272,11 @@ Wedding
 </div>
 
 <div class="review-text">
+
 I surprised my partner with this song
 and the reaction was priceless.
 Absolutely loved the result! 💕
+
 </div>
 
 <div class="review-tag">
@@ -1240,9 +1302,13 @@ Proposal
 
 <div>
 
-<div class="review-name">Karan</div>
+<div class="review-name">
+Karan
+</div>
 
-<div class="review-meta">Verified Customer</div>
+<div class="review-meta">
+Verified Customer
+</div>
 
 </div>
 
@@ -1253,9 +1319,11 @@ Proposal
 </div>
 
 <div class="review-text">
+
 A really unique experience.
 The song was made with so much care
 and creativity.
+
 </div>
 
 <div class="review-tag">
@@ -1281,9 +1349,13 @@ Just Because
 
 <div>
 
-<div class="review-name">Neha</div>
+<div class="review-name">
+Neha
+</div>
 
-<div class="review-meta">Verified Customer</div>
+<div class="review-meta">
+Verified Customer
+</div>
 
 </div>
 
@@ -1294,9 +1366,11 @@ Just Because
 </div>
 
 <div class="review-text">
+
 The entire experience was wonderful.
 The personalized lyrics made the gift
 feel truly special.
+
 </div>
 
 <div class="review-tag">
@@ -1314,7 +1388,7 @@ Other
 </section>
 
 
-<!-- STATS -->
+<!-- ================= STATS ================= -->
 
 <section class="section-padding">
 
@@ -1369,7 +1443,7 @@ Other
 </section>
 
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 
 <footer class="footer">
 
@@ -1384,8 +1458,10 @@ Create<span>YourSong</span>
 </div>
 
 <p class="mt-3">
+
 Turn your special memories and feelings
 into a personalized song.
+
 </p>
 
 <div class="mt-3">
@@ -1406,39 +1482,44 @@ into a personalized song.
 
 </div>
 
-
 <div class="col-md-3">
 
 <h5>Quick Links</h5>
 
 <a href="index.html">Home</a>
+
 <br>
 
 <a href="create1.html">Create Your Song</a>
+
 <br>
 
 <a href="reviews.html">Reviews</a>
 
 </div>
 
-
 <div class="col-md-4">
 
 <h5>Create Your Story</h5>
 
 <p>
+
 Every story deserves a song.
 Make yours unforgettable. ❤️
+
 </p>
 
 </div>
 
 </div>
 
-
 <div class="footer-bottom text-center">
 
 <p class="mb-0">
+
+© 2026 CreateYourSong.
+All rights reserved.
+
 </p>
 
 </div>
@@ -1447,6 +1528,8 @@ Make yours unforgettable. ❤️
 
 </footer>
 
+
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
@@ -1469,11 +1552,15 @@ document.getElementById("ratingText");
 
 const ratingMessages = {
 
-    1:"Poor",
-    2:"Could be better",
-    3:"Good",
-    4:"Very Good",
-    5:"Excellent ❤️"
+    1: "Poor",
+
+    2: "Could be better",
+
+    3: "Good",
+
+    4: "Very Good",
+
+    5: "Excellent ❤️"
 
 };
 
@@ -1485,12 +1572,10 @@ ratingButtons.forEach(function(button) {
         selectedRating =
             Number(this.dataset.rating);
 
-
         ratingButtons.forEach(function(star) {
 
             const value =
                 Number(star.dataset.rating);
-
 
             if(value <= selectedRating) {
 
@@ -1503,7 +1588,6 @@ ratingButtons.forEach(function(button) {
             }
 
         });
-
 
         ratingText.textContent =
             ratingMessages[selectedRating];
@@ -1520,13 +1604,16 @@ ratingButtons.forEach(function(button) {
 const reviewTextarea =
 document.getElementById("customerReview");
 
+reviewTextarea.addEventListener(
+    "input",
+    function() {
 
-reviewTextarea.addEventListener("input", function() {
+        document.getElementById(
+            "characterCount"
+        ).textContent = this.value.length;
 
-    document.getElementById("characterCount")
-        .textContent = this.value.length;
-
-});
+    }
+);
 
 
 /* =========================================
@@ -1543,194 +1630,241 @@ const GOOGLE_SCRIPT_URL =
 
 document
 .getElementById("customerReviewForm")
-.addEventListener("submit", function(event) {
+.addEventListener(
+    "submit",
+    function(event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
+        const form = this;
 
-    const name =
-        document.getElementById("customerName")
-        .value.trim();
+        const name =
+            document.getElementById(
+                "customerName"
+            ).value.trim();
 
+        const occasion =
+            document.getElementById(
+                "customerOccasion"
+            ).value;
 
-    const occasion =
-        document.getElementById("customerOccasion")
-        .value;
+        const review =
+            document.getElementById(
+                "customerReview"
+            ).value.trim();
 
 
-    const review =
-        document.getElementById("customerReview")
-        .value.trim();
+        /* =========================
+           VALIDATION
+        ========================= */
 
+        if(name.length < 2) {
 
-    /* VALIDATION */
+            alert("Please enter your name.");
 
-    if(name.length < 2) {
+            return;
 
-        alert("Please enter your name.");
+        }
 
-        return;
+        if(occasion === "") {
 
-    }
+            alert("Please select the occasion.");
 
+            return;
 
-    if(occasion === "") {
+        }
 
-        alert("Please select the occasion.");
+        if(selectedRating === 0) {
 
-        return;
+            alert(
+                "Please select your star rating ⭐"
+            );
 
-    }
+            return;
 
+        }
 
-    if(selectedRating === 0) {
+        if(review.length < 5) {
 
-        alert("Please select your star rating ⭐");
+            alert("Please write your review.");
 
-        return;
+            return;
 
-    }
+        }
 
 
-    if(review.length < 5) {
+        /* =========================
+           SUBMIT BUTTON
+        ========================= */
 
-        alert("Please write your review.");
+        const submitButton =
+            form.querySelector(
+                "button[type='submit']"
+            );
 
-        return;
-
-    }
-
-
-    /* BUTTON */
-
-    const submitButton =
-        this.querySelector(
-            "button[type='submit']"
-        );
-
-
-    submitButton.disabled = true;
-
-    submitButton.innerHTML =
-        '<i class="bi bi-hourglass-split me-2"></i>Submitting...';
-
-
-    /* DATA */
-
-    const reviewData = {
-
-        formType: "review",
-
-        name: name,
-
-        occasion: occasion,
-
-        rating: selectedRating,
-
-        review: review
-
-    };
-
-
-    /* SEND TO GOOGLE SHEETS */
-
-    fetch(GOOGLE_SCRIPT_URL, {
-
-        method: "POST",
-
-        mode: "no-cors",
-
-        headers: {
-
-            "Content-Type":
-                "text/plain;charset=utf-8"
-
-        },
-
-        body: JSON.stringify(reviewData)
-
-    })
-
-
-    .then(function() {
-
-        /* SUCCESS MESSAGE */
-
-        const successOverlay =
-            document.createElement("div");
-
-
-        successOverlay.className =
-            "success-overlay";
-
-
-        successOverlay.innerHTML = `
-
-            <div class="success-box">
-
-                <div class="success-icon">
-
-                    <i class="bi bi-check-lg"></i>
-
-                </div>
-
-                <h3>
-                    Your Review Has Been Submitted! ❤️
-                </h3>
-
-                <p>
-                    Thank you for sharing your experience.
-                    Your review has been submitted successfully.
-                </p>
-
-                <div class="redirect-text">
-                    Redirecting to Home...
-                </div>
-
-            </div>
-
-        `;
-
-
-        document.body.appendChild(
-            successOverlay
-        );
-
-
-        /* REDIRECT */
-
-        setTimeout(function() {
-
-            window.location.href =
-                "index.html";
-
-        }, 3000);
-
-    })
-
-
-    .catch(function(error) {
-
-        console.error(
-            "Google Sheets Error:",
-            error
-        );
-
-
-        alert(
-            "Something went wrong. Please try again."
-        );
-
-
-        submitButton.disabled = false;
-
+        submitButton.disabled = true;
 
         submitButton.innerHTML =
-            '<i class="bi bi-send-fill me-2"></i>Submit Review';
+            '<i class="bi bi-hourglass-split me-2"></i>Submitting...';
 
-    });
 
-});
+        /* =========================
+           REVIEW DATA
+        ========================= */
+
+        const reviewData = {
+
+            formType: "review",
+
+            name: name,
+
+            occasion: occasion,
+
+            rating: selectedRating,
+
+            review: review,
+
+            submittedAt:
+                new Date().toLocaleString()
+
+        };
+
+
+        /* =========================
+           SAVE LOCALLY
+        ========================= */
+
+        localStorage.setItem(
+            "latestReview",
+            JSON.stringify(reviewData)
+        );
+
+
+        /* =========================
+           SEND TO GOOGLE SHEETS
+        ========================= */
+
+        fetch(
+            GOOGLE_SCRIPT_URL,
+            {
+
+                method:"POST",
+
+                mode:"no-cors",
+
+                headers:{
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
+
+                body:
+                    JSON.stringify(reviewData)
+
+            }
+        )
+
+        .then(function() {
+
+            /* =========================
+               CREATE SUCCESS OVERLAY
+            ========================= */
+
+            const successOverlay =
+                document.createElement("div");
+
+            successOverlay.className =
+                "success-overlay";
+
+            successOverlay.innerHTML = `
+
+                <div class="success-box">
+
+                    <div class="success-icon">
+
+                        <i class="bi bi-check-lg"></i>
+
+                    </div>
+
+                    <h3>
+                        Your Review Has Been Submitted! ❤️
+                    </h3>
+
+                    <p>
+
+                        Thank you for sharing
+                        your experience.
+
+                        <br>
+
+                        Your review has been
+                        submitted successfully.
+
+                    </p>
+
+                    <div class="redirect-text">
+
+                        Redirecting to Home...
+
+                    </div>
+
+                </div>
+
+            `;
+
+            document.body.appendChild(
+                successOverlay
+            );
+
+
+            /* =========================
+               REDIRECT AFTER 3 SECONDS
+            ========================= */
+
+            setTimeout(function() {
+
+                /*
+                   Tell index.html to skip
+                   the login page once.
+                */
+
+                localStorage.setItem(
+                    "skipLoginOnce",
+                    "true"
+                );
+
+
+                /*
+                   Open HOME page.
+                */
+
+                window.location.href =
+                    "index.html";
+
+            }, 3000);
+
+        })
+
+        .catch(function(error) {
+
+            console.error(
+                "Google Sheets Error:",
+                error
+            );
+
+            alert(
+                "Something went wrong. Please try again."
+            );
+
+            submitButton.disabled =
+                false;
+
+            submitButton.innerHTML =
+                '<i class="bi bi-send-fill me-2"></i>Submit Review';
+
+        });
+
+    }
+);
 
 
 /* =========================================
@@ -1738,65 +1872,76 @@ document
 ========================================= */
 
 const filterButtons =
-    document.querySelectorAll(".filter-btn");
-
+    document.querySelectorAll(
+        ".filter-btn"
+    );
 
 filterButtons.forEach(function(button) {
 
-    button.addEventListener("click", function() {
+    button.addEventListener(
+        "click",
+        function() {
 
+            filterButtons.forEach(
+                function(btn) {
 
-        filterButtons.forEach(function(btn) {
+                    btn.classList.remove(
+                        "active"
+                    );
 
-            btn.classList.remove("active");
-
-        });
-
-
-        this.classList.add("active");
-
-
-        const filter =
-            this.dataset.filter;
-
-
-        const cards =
-            document.querySelectorAll(
-                "[data-review-card]"
+                }
             );
 
+            this.classList.add(
+                "active"
+            );
 
-        cards.forEach(function(card) {
+            const filter =
+                this.dataset.filter;
 
-            const tag =
-                card.querySelector(".review-tag");
+            const cards =
+                document.querySelectorAll(
+                    "[data-review-card]"
+                );
 
+            cards.forEach(
+                function(card) {
 
-            if(
-                filter === "All Reviews" ||
-                (
-                    tag &&
-                    tag.textContent.trim() === filter
-                )
-            ) {
+                    const tag =
+                        card.querySelector(
+                            ".review-tag"
+                        );
 
-                card.style.display = "";
+                    if(
+                        filter === "All Reviews" ||
+                        (
+                            tag &&
+                            tag.textContent.trim()
+                            === filter
+                        )
+                    ) {
 
-            } else {
+                        card.style.display =
+                            "";
 
-                card.style.display = "none";
+                    } else {
 
-            }
+                        card.style.display =
+                            "none";
 
-        });
+                    }
 
-    });
+                }
+            );
+
+        }
+    );
 
 });
 
 
 /* =========================================
-   FADE ANIMATION
+   FADE UP ANIMATION
 ========================================= */
 
 const observer =
@@ -1804,17 +1949,21 @@ const observer =
 
         function(entries) {
 
-            entries.forEach(function(entry) {
+            entries.forEach(
+                function(entry) {
 
-                if(entry.isIntersecting) {
+                    if(
+                        entry.isIntersecting
+                    ) {
 
-                    entry.target.classList.add(
-                        "visible"
-                    );
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
 
                 }
-
-            });
+            );
 
         },
 
@@ -1827,41 +1976,49 @@ const observer =
 
 document
 .querySelectorAll(".fade-up")
-.forEach(function(element) {
+.forEach(
+    function(element) {
 
-    observer.observe(element);
+        observer.observe(element);
 
-});
+    }
+);
 
 
 /* =========================================
    NAVBAR SHADOW
 ========================================= */
 
-window.addEventListener("scroll", function() {
+window.addEventListener(
+    "scroll",
+    function() {
 
-    const navbar =
-        document.querySelector(
-            ".navbar-custom"
-        );
+        const navbar =
+            document.querySelector(
+                ".navbar-custom"
+            );
 
+        if(
+            window.scrollY > 20
+        ) {
 
-    if(window.scrollY > 20) {
+            navbar.style.boxShadow =
+                "0 8px 30px -12px rgba(255,77,148,.2)";
 
-        navbar.style.boxShadow =
-            "0 8px 30px -12px rgba(255,77,148,.2)";
+        } else {
 
-    } else {
+            navbar.style.boxShadow =
+                "none";
 
-        navbar.style.boxShadow =
-            "none";
+        }
 
     }
-
-});
+);
 
 </script>
 
+
+<!-- BOOTSTRAP -->
 
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
@@ -1870,4 +2027,3 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.j
 </body>
 
 </html>
-```
