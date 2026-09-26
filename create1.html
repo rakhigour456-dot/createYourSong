@@ -880,29 +880,25 @@
 
     document
         .getElementById("songRequestForm")
-        .addEventListener("submit", function (event) {
+        .addEventListener("submit", async function (event) {
 
             event.preventDefault();
 
             const form = this;
-
-            const successMessage =
-                document.getElementById("successMessage");
-
-            const submitButton =
-                document.querySelector(".submit-btn");
-
+            const successMessage = document.getElementById("successMessage");
+            const submitButton = document.querySelector(".submit-btn");
 
             /* ================= VALIDATION ================= */
 
             if (!form.checkValidity()) {
-
                 form.reportValidity();
-
                 return;
-
             }
 
+            /* Prevent double submission */
+            if (submitButton.disabled) {
+                return;
+            }
 
             /* ================= GET FORM DATA ================= */
 
@@ -912,19 +908,11 @@
                 formType: "songRequest"
             };
 
-
             formData.forEach(function (value, key) {
-
                 requestData[key] = value;
-
             });
 
-
-            /* ================= ADD DATE ================= */
-
-            requestData.submittedAt =
-                new Date().toLocaleString();
-
+            requestData.submittedAt = new Date().toLocaleString();
 
             /* ================= SAVE LOCALLY ================= */
 
@@ -933,81 +921,59 @@
                 JSON.stringify(requestData)
             );
 
-
-            /* ================= BUTTON ================= */
+            /* ================= INSTANT USER FEEDBACK ================= */
 
             submitButton.disabled = true;
-
             submitButton.innerHTML =
-                '<i class="bi bi-hourglass-split"></i> Sending...';
+                '<span class="spinner-border spinner-border-sm me-2"></span> Sending Request...';
 
+            /* ================= SEND IN BACKGROUND ================= */
 
-            /* ================= SEND TO GOOGLE SHEETS ================= */
-
+            /*
+             * We do not wait for Google Sheets to respond.
+             * This makes the website feel much faster.
+             */
             fetch(GOOGLE_SCRIPT_URL, {
-
                 method: "POST",
-
                 mode: "no-cors",
-
                 headers: {
-                    "Content-Type":
-                        "text/plain;charset=utf-8"
+                    "Content-Type": "text/plain;charset=utf-8"
                 },
+                body: JSON.stringify(requestData),
+                keepalive: true
+            }).catch(function (error) {
+                console.error("Google Sheets Error:", error);
+            });
 
-                body: JSON.stringify(requestData)
+            /* ================= SHOW SUCCESS IMMEDIATELY ================= */
 
-            })
-
-
-            .then(function () {
-
-                /* ================= SUCCESS MESSAGE ================= */
+            setTimeout(function () {
 
                 successMessage.style.display = "block";
 
+                successMessage.innerHTML = `
+                    <i class="bi bi-check-circle-fill fs-4"></i>
+                    <br>
+                    <strong>Your song request has been submitted successfully! 🎵</strong>
+                    <br>
+                    <small>Thank you for choosing CreateYourSong ❤️</small>
+                `;
+
+                submitButton.innerHTML =
+                    '<i class="bi bi-check-circle-fill"></i> Request Submitted!';
 
                 successMessage.scrollIntoView({
                     behavior: "smooth",
                     block: "center"
                 });
 
-
-                submitButton.innerHTML =
-                    '<i class="bi bi-check-circle-fill"></i> Request Submitted!';
-
-
-                submitButton.disabled = true;
-
-
-                /* ================= OPEN REVIEWS PAGE ================= */
+                /* ================= REDIRECT ================= */
 
                 setTimeout(function () {
-
                     window.location.href = "reviews.html";
+                }, 1200);
 
-                }, 1500);
-
-            })
-
-
-            .catch(function (error) {
-
-                console.error(
-                    "Google Sheets Error:",
-                    error
-                );
-
-                alert(
-                    "Something went wrong. Please try again."
-                );
-
-                submitButton.disabled = false;
-
-                submitButton.innerHTML =
-                    '<i class="bi bi-send-fill"></i> Send Song Request';
-
-            });
+            }, 250);
 
         });
 
