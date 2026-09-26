@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CreateYourSong | Personalized Songs Made For You</title>
 
+
 <!-- Google Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
 
 <!-- Bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
 
 <!-- Bootstrap Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
 
 <style>
 
+/* =====================================================
+   ROOT
+===================================================== */
+
 :root {
+
     --pink: #ff4d94;
     --pink-dark: #e0357a;
     --pink-deep: #c92666;
@@ -27,1049 +47,2186 @@
     --pink-soft: #fff0f7;
     --white-soft: #fffafc;
     --text-dark: #4a1a2e;
+
 }
 
+
 * {
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
+
 
 html {
+
     scroll-behavior: smooth;
+
 }
+
 
 body {
+
     font-family: 'Poppins', sans-serif;
+
     color: var(--text-dark);
+
     background: var(--white-soft);
+
     overflow-x: hidden;
+
 }
 
-/* ================================
+
+/* =====================================================
    ANIMATED BACKGROUND
-================================ */
+===================================================== */
 
 body::before {
+
     content: "";
+
     position: fixed;
+
     width: 400px;
+
     height: 400px;
+
     background: rgba(255, 77, 148, 0.08);
+
     border-radius: 50%;
+
     top: 10%;
+
     left: -180px;
+
     filter: blur(20px);
+
     animation: moveBlob 8s ease-in-out infinite alternate;
+
     z-index: -1;
+
 }
+
 
 body::after {
+
     content: "";
+
     position: fixed;
+
     width: 350px;
+
     height: 350px;
+
     background: rgba(255, 77, 148, 0.07);
+
     border-radius: 50%;
+
     right: -150px;
+
     bottom: 5%;
+
     filter: blur(20px);
+
     animation: moveBlob2 10s ease-in-out infinite alternate;
+
     z-index: -1;
+
 }
+
 
 @keyframes moveBlob {
+
     from {
+
         transform: translateY(0) scale(1);
+
     }
+
     to {
+
         transform: translateY(120px) scale(1.2);
+
     }
+
 }
+
 
 @keyframes moveBlob2 {
+
     from {
+
         transform: translateY(0) scale(1);
+
     }
+
     to {
+
         transform: translateY(-100px) scale(1.15);
+
     }
+
 }
 
-/* ================================
+
+/* =====================================================
    LOGIN PAGE
-================================ */
+===================================================== */
 
 #loginPage {
+
     min-height: 100vh;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     background:
-        radial-gradient(circle at top left, #ffe4f0, transparent 40%),
-        radial-gradient(circle at bottom right, #fff0f7, transparent 40%),
+
+        radial-gradient(
+            circle at top left,
+            #ffe4f0,
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            #fff0f7,
+            transparent 40%
+        ),
+
         #fffafc;
+
     position: relative;
+
     overflow: hidden;
+
 }
 
-/* Floating notes */
+
+/* =====================================================
+   FLOATING MUSIC NOTES
+===================================================== */
 
 .music-note {
+
     position: absolute;
+
     color: var(--pink);
+
     opacity: 0.25;
+
     font-size: 30px;
+
     animation: floatNote 7s linear infinite;
+
 }
+
 
 .note1 {
+
     left: 10%;
+
     bottom: -50px;
+
     animation-delay: 0s;
+
 }
+
 
 .note2 {
+
     left: 25%;
+
     bottom: -50px;
+
     animation-delay: 2s;
+
 }
+
 
 .note3 {
+
     right: 20%;
+
     bottom: -50px;
+
     animation-delay: 4s;
+
 }
+
 
 .note4 {
+
     right: 8%;
+
     bottom: -50px;
+
     animation-delay: 1s;
+
 }
 
+
 @keyframes floatNote {
+
     0% {
-        transform: translateY(0) rotate(0deg);
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
         opacity: 0;
+
     }
 
     20% {
+
         opacity: 0.25;
+
     }
 
     80% {
+
         opacity: 0.25;
+
     }
 
     100% {
-        transform: translateY(-100vh) rotate(30deg);
+
+        transform:
+            translateY(-100vh)
+            rotate(30deg);
+
         opacity: 0;
+
     }
+
 }
 
-/* Login card */
+
+/* =====================================================
+   LOGIN CARD
+===================================================== */
 
 .login-card {
+
     width: 100%;
+
     max-width: 430px;
-    background: rgba(255,255,255,0.92);
+
+    background: rgba(255,255,255,0.94);
+
     padding: 42px 35px;
+
     border-radius: 28px;
-    box-shadow: 0 25px 70px rgba(201, 38, 102, 0.15);
-    border: 1px solid rgba(255, 77, 148, 0.12);
-    animation: loginAppear 1s ease;
+
+    box-shadow:
+        0 25px 70px
+        rgba(201,38,102,0.15);
+
+    border:
+        1px solid
+        rgba(255,77,148,0.12);
+
+    animation:
+        loginAppear 1s ease;
+
     position: relative;
+
     z-index: 5;
+
 }
 
+
 @keyframes loginAppear {
+
     from {
+
         opacity: 0;
-        transform: translateY(50px) scale(0.9);
+
+        transform:
+            translateY(50px)
+            scale(0.9);
+
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0)
+            scale(1);
+
     }
+
 }
+
+
+/* =====================================================
+   LOGO
+===================================================== */
 
 .logo-icon {
+
     width: 75px;
+
     height: 75px;
+
     margin: auto;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
-    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--pink-deep)
+        );
+
     color: white;
+
     border-radius: 22px;
+
     font-size: 34px;
-    box-shadow: 0 12px 30px rgba(255,77,148,0.35);
-    animation: musicPulse 2s infinite;
+
+    box-shadow:
+        0 12px 30px
+        rgba(255,77,148,0.35);
+
+    animation:
+        musicPulse 2s infinite;
+
 }
 
+
 @keyframes musicPulse {
+
     0%,100% {
+
         transform: scale(1);
+
     }
 
     50% {
+
         transform: scale(1.08);
+
     }
+
 }
+
 
 .login-title {
+
     font-size: 29px;
+
     font-weight: 800;
+
     margin-top: 20px;
+
     text-align: center;
+
 }
+
 
 .login-subtitle {
+
     text-align: center;
+
     color: #8c6475;
+
     margin-bottom: 30px;
+
 }
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
 
 .form-control {
+
     border-radius: 14px;
+
     padding: 13px 15px;
-    border: 1px solid #f0ccd9;
+
+    border:
+        1px solid
+        #f0ccd9;
+
 }
+
 
 .form-control:focus {
-    border-color: var(--pink);
-    box-shadow: 0 0 0 4px rgba(255,77,148,0.10);
+
+    border-color:
+        var(--pink);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(255,77,148,0.10);
+
 }
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+.password-wrapper {
+
+    position: relative;
+
+}
+
+
+.password-wrapper .form-control {
+
+    padding-right: 50px;
+
+}
+
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #9c7082;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+
+.password-toggle:hover {
+
+    color: var(--pink);
+
+}
+
+
+.password-help {
+
+    font-size: 11px;
+
+    color: #9a7182;
+
+    margin-top: 7px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
 
 .login-btn {
+
     width: 100%;
+
     border: none;
+
     padding: 14px;
+
     border-radius: 14px;
-    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--pink-deep)
+        );
+
     color: white;
+
     font-weight: 600;
+
     font-size: 16px;
+
     transition: 0.3s;
-    box-shadow: 0 10px 25px rgba(255,77,148,0.25);
+
+    box-shadow:
+        0 10px 25px
+        rgba(255,77,148,0.25);
+
 }
+
 
 .login-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(255,77,148,0.35);
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 30px
+        rgba(255,77,148,0.35);
+
 }
+
 
 .login-btn:active {
+
     transform: scale(0.97);
+
 }
+
 
 .login-footer {
+
     text-align: center;
+
     margin-top: 25px;
+
     font-size: 13px;
+
     color: #997080;
+
 }
 
-/* ================================
-   WEBSITE
-================================ */
+
+/* =====================================================
+   MAIN WEBSITE
+===================================================== */
 
 #website {
+
     display: none;
+
 }
 
-/* ================================
+
+/* =====================================================
    NAVBAR
-================================ */
+===================================================== */
 
 .navbar {
-    background: rgba(255,255,255,0.94);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 3px 20px rgba(201,38,102,0.08);
+
+    background:
+        rgba(255,255,255,0.94);
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 3px 20px
+        rgba(201,38,102,0.08);
+
     padding: 14px 0;
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
+
 }
+
 
 .navbar-brand {
-    color: var(--pink-deep) !important;
+
+    color:
+        var(--pink-deep) !important;
+
     font-weight: 800;
+
     font-size: 23px;
+
 }
+
 
 .navbar-brand i {
+
     margin-right: 7px;
+
 }
+
 
 .nav-link {
-    color: var(--text-dark) !important;
+
+    color:
+        var(--text-dark) !important;
+
     font-weight: 500;
+
     margin: 0 7px;
+
     transition: 0.3s;
+
 }
+
 
 .nav-link:hover {
-    color: var(--pink) !important;
-    transform: translateY(-2px);
+
+    color:
+        var(--pink) !important;
+
+    transform:
+        translateY(-2px);
+
 }
+
 
 .nav-btn {
-    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--pink-deep)
+        );
+
     color: white !important;
+
     border-radius: 25px;
+
     padding: 9px 20px !important;
+
     transition: 0.3s;
+
 }
+
 
 .nav-btn:hover {
+
     color: white !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255,77,148,0.3);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(255,77,148,0.3);
+
 }
 
-/* ================================
+
+/* =====================================================
    HERO
-================================ */
+===================================================== */
 
 .hero {
+
     min-height: 90vh;
+
     display: flex;
+
     align-items: center;
+
     position: relative;
+
     overflow: hidden;
+
     padding: 80px 0;
+
 }
+
 
 .hero h1 {
-    font-size: clamp(42px, 6vw, 70px);
+
+    font-size:
+        clamp(42px, 6vw, 70px);
+
     font-weight: 800;
+
     line-height: 1.1;
-    animation: heroText 1s ease;
+
+    animation:
+        heroText 1s ease;
+
 }
+
 
 .hero h1 span {
-    color: var(--pink);
+
+    color:
+        var(--pink);
+
 }
+
 
 .hero p {
-    color: #755464;
+
+    color:
+        #755464;
+
     font-size: 18px;
+
     max-width: 600px;
+
     margin-top: 20px;
-    animation: heroText 1.2s ease;
+
+    animation:
+        heroText 1.2s ease;
+
 }
 
+
 @keyframes heroText {
+
     from {
+
         opacity: 0;
-        transform: translateY(30px);
+
+        transform:
+            translateY(30px);
+
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
+
     }
+
 }
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .btn-main {
+
     display: inline-block;
-    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--pink-deep)
+        );
+
     color: white;
+
     text-decoration: none;
+
     padding: 14px 28px;
+
     border-radius: 30px;
+
     font-weight: 600;
+
     margin-top: 25px;
+
     transition: 0.3s;
-    box-shadow: 0 10px 25px rgba(255,77,148,0.25);
+
+    box-shadow:
+        0 10px 25px
+        rgba(255,77,148,0.25);
+
 }
+
 
 .btn-main:hover {
+
     color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(255,77,148,0.35);
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 15px 30px
+        rgba(255,77,148,0.35);
+
 }
+
 
 .btn-outline {
+
     display: inline-block;
-    color: var(--pink-deep);
+
+    color:
+        var(--pink-deep);
+
     text-decoration: none;
+
     padding: 13px 27px;
-    border: 2px solid var(--pink);
+
+    border:
+        2px solid
+        var(--pink);
+
     border-radius: 30px;
+
     font-weight: 600;
+
     margin-top: 25px;
+
     margin-left: 10px;
+
     transition: 0.3s;
+
 }
+
 
 .btn-outline:hover {
-    background: var(--pink);
+
+    background:
+        var(--pink);
+
     color: white;
-    transform: translateY(-5px);
+
+    transform:
+        translateY(-5px);
+
 }
 
-/* Music visual */
+
+/* =====================================================
+   MUSIC VISUAL
+===================================================== */
 
 .music-visual {
+
     width: 350px;
+
     height: 350px;
+
     margin: auto;
+
     border-radius: 50%;
-    background: linear-gradient(135deg, #ffe4f0, #fff);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe4f0,
+            #fff
+        );
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     position: relative;
-    animation: visualFloat 4s ease-in-out infinite;
-    box-shadow: 0 25px 70px rgba(255,77,148,0.18);
+
+    animation:
+        visualFloat 4s ease-in-out infinite;
+
+    box-shadow:
+        0 25px 70px
+        rgba(255,77,148,0.18);
+
 }
+
 
 .music-visual::before,
 .music-visual::after {
+
     content: "";
+
     position: absolute;
-    border: 2px solid rgba(255,77,148,0.25);
+
+    border:
+        2px solid
+        rgba(255,77,148,0.25);
+
     border-radius: 50%;
-    animation: ripple 3s infinite;
+
+    animation:
+        ripple 3s infinite;
+
 }
+
 
 .music-visual::before {
+
     width: 430px;
+
     height: 430px;
+
 }
+
 
 .music-visual::after {
+
     width: 500px;
+
     height: 500px;
+
     animation-delay: 1s;
+
 }
+
 
 .music-visual i {
+
     font-size: 130px;
-    color: var(--pink);
-    animation: musicIcon 2s ease-in-out infinite;
+
+    color:
+        var(--pink);
+
+    animation:
+        musicIcon 2s ease-in-out infinite;
+
 }
+
 
 @keyframes visualFloat {
+
     0%,100% {
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
+
     }
 
     50% {
-        transform: translateY(-18px);
+
+        transform:
+            translateY(-18px);
+
     }
+
 }
+
 
 @keyframes musicIcon {
+
     0%,100% {
-        transform: rotate(-5deg) scale(1);
+
+        transform:
+            rotate(-5deg)
+            scale(1);
+
     }
 
     50% {
-        transform: rotate(5deg) scale(1.1);
+
+        transform:
+            rotate(5deg)
+            scale(1.1);
+
     }
+
 }
 
+
 @keyframes ripple {
+
     0% {
-        transform: scale(0.8);
+
+        transform:
+            scale(0.8);
+
         opacity: 0;
+
     }
 
     40% {
+
         opacity: 1;
+
     }
 
     100% {
-        transform: scale(1.1);
+
+        transform:
+            scale(1.1);
+
         opacity: 0;
+
     }
+
 }
 
-/* ================================
+
+/* =====================================================
    STATS
-================================ */
+===================================================== */
 
 .stats {
+
     margin-top: 50px;
+
 }
+
 
 .stat-box {
+
     text-align: center;
+
     padding: 15px;
+
 }
+
 
 .stat-box h3 {
-    color: var(--pink-deep);
+
+    color:
+        var(--pink-deep);
+
     font-weight: 800;
+
     font-size: 28px;
+
 }
+
 
 .stat-box p {
+
     margin: 0;
+
     font-size: 13px;
+
 }
 
-/* ================================
+
+/* =====================================================
    SECTIONS
-================================ */
+===================================================== */
 
 .section {
+
     padding: 100px 0;
+
 }
+
 
 .section-title {
+
     text-align: center;
+
     margin-bottom: 55px;
+
 }
+
 
 .section-title h2 {
+
     font-weight: 800;
+
     font-size: 38px;
+
 }
+
 
 .section-title span {
-    color: var(--pink);
+
+    color:
+        var(--pink);
+
 }
+
 
 .section-title p {
-    color: #806575;
+
+    color:
+        #806575;
+
     margin-top: 10px;
+
 }
 
-/* ================================
+
+/* =====================================================
    FEATURE CARDS
-================================ */
+===================================================== */
 
 .feature-card {
+
     background: white;
+
     padding: 35px 25px;
+
     border-radius: 22px;
+
     text-align: center;
+
     height: 100%;
-    border: 1px solid #ffe1ec;
+
+    border:
+        1px solid
+        #ffe1ec;
+
     transition: 0.4s;
+
     position: relative;
+
     overflow: hidden;
+
 }
+
 
 .feature-card::before {
+
     content: "";
+
     position: absolute;
+
     width: 100%;
+
     height: 4px;
-    background: linear-gradient(90deg, var(--pink), var(--pink-deep));
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--pink),
+            var(--pink-deep)
+        );
+
     top: 0;
+
     left: -100%;
+
     transition: 0.4s;
+
 }
+
 
 .feature-card:hover::before {
+
     left: 0;
+
 }
+
 
 .feature-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 20px 45px rgba(201,38,102,0.13);
+
+    transform:
+        translateY(-12px);
+
+    box-shadow:
+        0 20px 45px
+        rgba(201,38,102,0.13);
+
 }
+
 
 .feature-icon {
+
     width: 70px;
+
     height: 70px;
-    margin: auto auto 20px;
-    background: var(--pink-light);
-    color: var(--pink-deep);
+
+    margin:
+        auto auto 20px;
+
+    background:
+        var(--pink-light);
+
+    color:
+        var(--pink-deep);
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     border-radius: 20px;
+
     font-size: 30px;
+
     transition: 0.4s;
+
 }
+
 
 .feature-card:hover .feature-icon {
-    transform: rotate(8deg) scale(1.12);
-    background: var(--pink);
+
+    transform:
+        rotate(8deg)
+        scale(1.12);
+
+    background:
+        var(--pink);
+
     color: white;
+
 }
+
 
 .feature-card h4 {
+
     font-weight: 700;
+
     margin-bottom: 12px;
+
 }
+
 
 .feature-card p {
-    color: #806575;
+
+    color:
+        #806575;
+
     font-size: 14px;
+
 }
 
-/* ================================
+
+/* =====================================================
    HOW IT WORKS
-================================ */
+===================================================== */
 
 .step {
+
     text-align: center;
+
     padding: 20px;
+
     position: relative;
+
 }
+
 
 .step-number {
+
     width: 65px;
+
     height: 65px;
-    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--pink-deep)
+        );
+
     color: white;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     margin: auto;
+
     border-radius: 50%;
+
     font-size: 22px;
+
     font-weight: 700;
-    box-shadow: 0 10px 25px rgba(255,77,148,0.25);
+
+    box-shadow:
+        0 10px 25px
+        rgba(255,77,148,0.25);
+
     transition: 0.4s;
+
 }
+
 
 .step:hover .step-number {
-    transform: scale(1.15) rotate(10deg);
+
+    transform:
+        scale(1.15)
+        rotate(10deg);
+
 }
+
 
 .step h4 {
+
     margin-top: 20px;
+
     font-weight: 700;
+
 }
+
 
 .step p {
-    color: #806575;
+
+    color:
+        #806575;
+
     font-size: 14px;
+
 }
 
-/* ================================
+
+/* =====================================================
    TESTIMONIALS
-================================ */
+===================================================== */
 
 .testimonial-card {
+
     background: white;
+
     padding: 30px;
+
     border-radius: 22px;
-    border: 1px solid #ffe1ec;
+
+    border:
+        1px solid
+        #ffe1ec;
+
     height: 100%;
+
     transition: 0.4s;
+
 }
+
 
 .testimonial-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(201,38,102,0.12);
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 20px 40px
+        rgba(201,38,102,0.12);
+
 }
+
 
 .stars {
-    color: #ffb400;
+
+    color:
+        #ffb400;
+
     margin-bottom: 15px;
+
 }
+
 
 .testimonial-card p {
-    color: #725465;
+
+    color:
+        #725465;
+
     font-size: 14px;
+
 }
+
 
 .user {
+
     display: flex;
+
     align-items: center;
+
     gap: 12px;
+
     margin-top: 20px;
+
 }
+
 
 .user-icon {
+
     width: 45px;
+
     height: 45px;
+
     border-radius: 50%;
-    background: var(--pink-light);
-    color: var(--pink-deep);
+
+    background:
+        var(--pink-light);
+
+    color:
+        var(--pink-deep);
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-size: 20px;
+
 }
 
-/* ================================
+
+/* =====================================================
    CTA
-================================ */
+===================================================== */
 
 .cta {
+
     margin: 60px auto;
+
     max-width: 1000px;
-    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--pink-deep)
+        );
+
     color: white;
+
     padding: 65px 30px;
+
     border-radius: 30px;
+
     text-align: center;
+
     position: relative;
+
     overflow: hidden;
+
 }
+
 
 .cta::before,
 .cta::after {
+
     content: "";
+
     position: absolute;
-    border: 1px solid rgba(255,255,255,0.25);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.25);
+
     border-radius: 50%;
+
 }
+
 
 .cta::before {
+
     width: 250px;
+
     height: 250px;
+
     left: -100px;
+
     top: -100px;
+
 }
+
 
 .cta::after {
+
     width: 300px;
+
     height: 300px;
+
     right: -120px;
+
     bottom: -150px;
+
 }
+
 
 .cta h2 {
+
     font-weight: 800;
+
     position: relative;
+
     z-index: 2;
+
 }
+
 
 .cta p {
+
     position: relative;
+
     z-index: 2;
+
 }
+
 
 .cta .btn {
+
     background: white;
-    color: var(--pink-deep);
+
+    color:
+        var(--pink-deep);
+
     border: none;
+
     border-radius: 30px;
+
     padding: 13px 28px;
+
     font-weight: 700;
+
     position: relative;
+
     z-index: 2;
+
     transition: 0.3s;
+
 }
+
 
 .cta .btn:hover {
-    transform: translateY(-4px) scale(1.04);
+
+    transform:
+        translateY(-4px)
+        scale(1.04);
+
 }
 
-/* ================================
+
+/* =====================================================
    FOOTER
-================================ */
+===================================================== */
 
 footer {
+
     background: #fff;
-    border-top: 1px solid #ffe1ec;
+
+    border-top:
+        1px solid
+        #ffe1ec;
+
     padding: 35px 0;
+
     text-align: center;
+
 }
+
 
 footer p {
+
     margin: 0;
-    color: #806575;
+
+    color:
+        #806575;
+
     font-size: 14px;
+
 }
 
-/* ================================
+
+/* =====================================================
    RESPONSIVE
-================================ */
+===================================================== */
 
 @media (max-width: 991px) {
 
     .hero {
+
         text-align: center;
+
     }
+
 
     .hero p {
+
         margin-left: auto;
+
         margin-right: auto;
+
     }
+
 
     .music-visual {
+
         margin-top: 80px;
+
         width: 280px;
+
         height: 280px;
+
     }
+
 
     .music-visual i {
+
         font-size: 100px;
+
     }
+
 
     .music-visual::before {
+
         width: 340px;
+
         height: 340px;
+
     }
 
+
     .music-visual::after {
+
         width: 390px;
+
         height: 390px;
+
     }
+
 }
+
 
 @media (max-width: 576px) {
 
     .login-card {
+
         margin: 20px;
+
         padding: 35px 25px;
+
     }
+
 
     .hero {
+
         padding: 60px 15px;
+
     }
+
 
     .hero h1 {
+
         font-size: 42px;
+
     }
+
 
     .btn-outline {
+
         margin-left: 0;
+
     }
+
 
     .section {
+
         padding: 70px 15px;
+
     }
+
 
     .section-title h2 {
+
         font-size: 30px;
+
     }
+
 
     .music-visual {
+
         width: 240px;
+
         height: 240px;
+
     }
+
 
     .music-visual::before {
+
         width: 290px;
+
         height: 290px;
+
     }
 
+
     .music-visual::after {
+
         width: 330px;
+
         height: 330px;
+
     }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- ==========================================
+
+<!-- =====================================================
      LOGIN PAGE
-========================================== -->
+===================================================== -->
 
 <section id="loginPage">
- <div id=" website">   
+
+
+    <!-- Floating notes -->
 
     <div class="music-note note1">♪</div>
+
     <div class="music-note note2">♫</div>
+
     <div class="music-note note3">♪</div>
+
     <div class="music-note note4">♫</div>
+
+
+    <!-- Login Card -->
 
     <div class="login-card">
 
+
         <div class="logo-icon">
+
             <i class="bi bi-music-note-beamed"></i>
+
         </div>
 
+
         <h1 class="login-title">
+
             CreateYourSong
+
         </h1>
 
+
         <p class="login-subtitle">
+
             Turn your special moments into music 💗
+
         </p>
+
 
         <form id="loginForm">
 
+
+            <!-- EMAIL -->
+
             <div class="mb-3">
-                <label class="form-label fw-semibold">
+
+
+                <label
+                    class="form-label fw-semibold"
+                    for="email">
+
                     Email Address
+
                 </label>
+
 
                 <input
                     type="email"
                     id="email"
                     class="form-control"
                     placeholder="Enter your email"
-                    required
-                >
+                    autocomplete="email"
+                    required>
+
+
             </div>
+
+
+            <!-- PASSWORD -->
 
             <div class="mb-3">
-                <label class="form-label fw-semibold">
+
+
+                <label
+                    class="form-label fw-semibold"
+                    for="password">
+
                     Password
+
                 </label>
 
-                <input
-                    type="password"
-                    id="password"
-                    class="form-control"
-                    placeholder="Enter your password"
-                    minlength="6"
-                    required
-                >
-            </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="password-wrapper">
 
-                <div>
-                    <input type="checkbox" id="remember">
-                    <label for="remember" class="small">
-                        Remember me
-                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        class="form-control"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        minlength="8"
+                        required>
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="passwordToggle"
+                        aria-label="Show password">
+
+                        <i class="bi bi-eye"></i>
+
+                    </button>
+
+
                 </div>
 
-                <span class="small" style="color:#e0357a;">
-                    Forgot password?
-                </span>
+
+                <div class="password-help">
+
+                    Password must contain:
+                    8+ characters,
+                    uppercase,
+                    lowercase,
+                    number and special character.
+
+                </div>
+
 
             </div>
 
-            <button type="submit" class="login-btn">
+
+            <!-- REMEMBER -->
+
+            <div
+                class="d-flex justify-content-between align-items-center mb-4">
+
+
+                <div>
+
+
+                    <input
+                        type="checkbox"
+                        id="remember">
+
+
+                    <label
+                        for="remember"
+                        class="small">
+
+                        Remember me
+
+                    </label>
+
+
+                </div>
+
+
+                <span
+                    class="small"
+                    style="color:#e0357a;">
+
+                    Forgot password?
+
+                </span>
+
+
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="login-btn">
+
                 <i class="bi bi-box-arrow-in-right"></i>
+
                 Login
+
             </button>
 
-            <p id="loginMessage" class="text-center mt-3"></p>
+
+            <!-- MESSAGE -->
+
+            <p
+                id="loginMessage"
+                class="text-center mt-3">
+
+            </p>
+
 
         </form>
 
+
         <div class="login-footer">
+
             Made with 💗 for music lovers
+
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- ==========================================
+
+<!-- =====================================================
      MAIN WEBSITE
-========================================== -->
+===================================================== -->
 
 <div id="website">
 
-<!-- NAVBAR -->
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
 <nav class="navbar navbar-expand-lg">
 
+
 <div class="container">
 
-<a class="navbar-brand" href="#home">
+
+<a
+    class="navbar-brand"
+    href="#home">
+
     <i class="bi bi-music-note-beamed"></i>
+
     CreateYourSong
+
 </a>
 
-<button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#navbarNav">
 
-<span class="navbar-toggler-icon"></span>
+<button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav">
+
+    <span class="navbar-toggler-icon"></span>
 
 </button>
 
-<div class="collapse navbar-collapse" id="navbarNav">
 
-<ul class="navbar-nav ms-auto align-items-lg-center">
+<div
+    class="collapse navbar-collapse"
+    id="navbarNav">
 
-<li class="nav-item">
-<a class="nav-link" href="#home">Home</a>
-</li>
 
-<li class="nav-item">
-<a class="nav-link" href="#features">Features</a>
-</li>
+<ul
+    class="navbar-nav ms-auto align-items-lg-center">
+
 
 <li class="nav-item">
-<a class="nav-link" href="#how-it-works">How It Works</a>
-</li>
 
-<li class="nav-item">
-<a class="nav-link" href="#testimonials">Reviews</a>
-</li>
+<a
+    class="nav-link"
+    href="#home">
 
-<li class="nav-item">
-<a class="nav-link" href="about.html">About</a>
-</li>
+    Home
 
-<li class="nav-item">
-<a class="nav-link nav-btn" href="create1.html">
-    <i class="bi bi-music-note"></i>
-    Create Your Song
 </a>
+
 </li>
+
+
+<li class="nav-item">
+
+<a
+    class="nav-link"
+    href="#features">
+
+    Features
+
+</a>
+
+</li>
+
+
+<li class="nav-item">
+
+<a
+    class="nav-link"
+    href="#how-it-works">
+
+    How It Works
+
+</a>
+
+</li>
+
+
+<li class="nav-item">
+
+<a
+    class="nav-link"
+    href="reviews.html">
+
+    Reviews
+
+</a>
+
+</li>
+
+
+<li class="nav-item">
+
+<a
+    class="nav-link"
+    href="about.html">
+
+    About
+
+</a>
+
+</li>
+
+
+<li class="nav-item">
+
+<a
+    class="nav-link nav-btn"
+    href="create1.html">
+
+    <i class="bi bi-music-note"></i>
+
+    Create Your Song
+
+</a>
+
+</li>
+
 
 </ul>
 
 </div>
+
 </div>
+
 </nav>
 
 
-<!-- HERO -->
 
-<section class="hero" id="home">
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="home">
+
 
 <div class="container">
 
+
 <div class="row align-items-center">
+
 
 <div class="col-lg-7">
 
+
 <h1>
+
 Your Story,
+
 <br>
-<span>Turned Into Song.</span>
+
+<span>
+
+Turned Into Song.
+
+</span>
+
 </h1>
 
+
 <p>
+
 Every person has a story worth singing.
+
 Tell us your special moment, and we will
 turn it into a personalized song made
 just for you. 🎶
+
 </p>
 
-<a href="create1.html" class="btn-main">
+
+<a
+    href="create1.html"
+    class="btn-main">
+
     <i class="bi bi-music-note-beamed"></i>
+
     Create Your Song
+
 </a>
 
-<a href="#how-it-works" class="btn-outline">
+
+<a
+    href="#how-it-works"
+    class="btn-outline">
+
     How It Works
+
 </a>
+
 
 <div class="row stats">
 
-<div class="col-4 stat-box">
-<h3>12K+</h3>
-<p>Songs Created</p>
-</div>
 
 <div class="col-4 stat-box">
-<h3>4.9★</h3>
-<p>Happy Customers</p>
+
+<h3>
+
+12K+
+
+</h3>
+
+<p>
+
+Songs Created
+
+</p>
+
 </div>
+
 
 <div class="col-4 stat-box">
-<h3>48h</h3>
-<p>Fast Delivery</p>
-</div>
+
+<h3>
+
+4.9★
+
+</h3>
+
+<p>
+
+Happy Customers
+
+</p>
 
 </div>
 
+
+<div class="col-4 stat-box">
+
+<h3>
+
+48h
+
+</h3>
+
+<p>
+
+Fast Delivery
+
+</p>
+
 </div>
+
+
+</div>
+
+
+</div>
+
 
 
 <div class="col-lg-5">
+
 
 <div class="music-visual">
 
@@ -1077,7 +2234,9 @@ just for you. 🎶
 
 </div>
 
+
 </div>
+
 
 </div>
 
@@ -1086,104 +2245,182 @@ just for you. 🎶
 </section>
 
 
-<!-- FEATURES -->
 
-<section class="section" id="features">
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section
+    class="section"
+    id="features">
+
 
 <div class="container">
 
+
 <div class="section-title">
 
+
 <h2>
-Why Choose <span>CreateYourSong?</span>
+
+Why Choose
+
+<span>
+
+CreateYourSong?
+
+</span>
+
 </h2>
 
+
 <p>
+
 Your memories deserve their own melody.
+
 </p>
 
+
 </div>
+
 
 <div class="row g-4">
 
+
 <div class="col-md-6 col-lg-3">
+
 
 <div class="feature-card">
 
+
 <div class="feature-icon">
+
 <i class="bi bi-heart-fill"></i>
+
 </div>
 
-<h4>100% Personalized</h4>
+
+<h4>
+
+100% Personalized
+
+</h4>
+
 
 <p>
+
 Your story, your emotions, your memories —
 everything is created especially for you.
+
 </p>
 
+
 </div>
 
 </div>
+
 
 
 <div class="col-md-6 col-lg-3">
 
+
 <div class="feature-card">
 
+
 <div class="feature-icon">
+
 <i class="bi bi-mic-fill"></i>
+
 </div>
 
-<h4>Studio Quality</h4>
+
+<h4>
+
+Studio Quality
+
+</h4>
+
 
 <p>
+
 Beautifully created songs with a professional
 and memorable sound.
+
 </p>
 
+
 </div>
 
 </div>
+
 
 
 <div class="col-md-6 col-lg-3">
 
+
 <div class="feature-card">
 
+
 <div class="feature-icon">
+
 <i class="bi bi-lightning-charge-fill"></i>
+
 </div>
 
-<h4>Fast Turnaround</h4>
+
+<h4>
+
+Fast Turnaround
+
+</h4>
+
 
 <p>
+
 We work quickly to transform your special
 story into a beautiful song.
+
 </p>
 
+
 </div>
 
 </div>
+
 
 
 <div class="col-md-6 col-lg-3">
 
+
 <div class="feature-card">
 
+
 <div class="feature-icon">
+
 <i class="bi bi-stars"></i>
+
 </div>
 
-<h4>Made With Love</h4>
+
+<h4>
+
+Made With Love
+
+</h4>
+
 
 <p>
+
 Every song is created with creativity,
 emotion and attention to detail.
+
 </p>
 
+
 </div>
 
 </div>
+
 
 </div>
 
@@ -1192,96 +2429,182 @@ emotion and attention to detail.
 </section>
 
 
-<!-- HOW IT WORKS -->
 
-<section class="section" id="how-it-works">
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section
+    class="section"
+    id="how-it-works">
+
 
 <div class="container">
 
+
 <div class="section-title">
 
+
 <h2>
-How It <span>Works</span>
+
+How It
+
+<span>
+
+Works
+
+</span>
+
 </h2>
 
+
 <p>
+
 Creating your personalized song is simple.
+
 </p>
+
 
 </div>
 
+
 <div class="row g-4">
+
 
 <div class="col-md-3">
 
+
 <div class="step">
 
-<div class="step-number">1</div>
 
-<h4>Share Your Story</h4>
+<div class="step-number">
+
+1
+
+</div>
+
+
+<h4>
+
+Share Your Story
+
+</h4>
+
 
 <p>
+
 Tell us about the person, memory or
 special occasion.
+
 </p>
 
+
 </div>
 
 </div>
+
 
 
 <div class="col-md-3">
 
+
 <div class="step">
 
-<div class="step-number">2</div>
 
-<h4>Pick a Style</h4>
+<div class="step-number">
+
+2
+
+</div>
+
+
+<h4>
+
+Pick a Style
+
+</h4>
+
 
 <p>
+
 Choose the mood and musical style
 you want.
+
 </p>
 
+
 </div>
 
 </div>
+
 
 
 <div class="col-md-3">
 
+
 <div class="step">
 
-<div class="step-number">3</div>
 
-<h4>We Compose</h4>
+<div class="step-number">
+
+3
+
+</div>
+
+
+<h4>
+
+We Compose
+
+</h4>
+
 
 <p>
+
 We transform your story into your
 personalized song.
+
 </p>
 
+
 </div>
 
 </div>
+
 
 
 <div class="col-md-3">
 
+
 <div class="step">
 
-<div class="step-number">4</div>
 
-<h4>Receive & Share</h4>
+<div class="step-number">
+
+4
+
+</div>
+
+
+<h4>
+
+Receive & Share
+
+</h4>
+
 
 <p>
+
 Get your song and share your special
 moment with loved ones.
+
 </p>
 
+
 </div>
 
 </div>
+
 
 </div>
 
@@ -1290,122 +2613,225 @@ moment with loved ones.
 </section>
 
 
-<!-- TESTIMONIALS -->
 
-<section class="section" id="testimonials">
+<!-- =====================================================
+     TESTIMONIALS
+===================================================== -->
+
+<section
+    class="section"
+    id="testimonials">
+
 
 <div class="container">
 
+
 <div class="section-title">
 
+
 <h2>
-What Our <span>Customers Say</span>
+
+What Our
+
+<span>
+
+Customers Say
+
+</span>
+
 </h2>
 
+
 <p>
+
 Real stories. Real emotions. Real songs.
+
 </p>
+
 
 </div>
 
+
 <div class="row g-4">
+
 
 <div class="col-md-4">
 
+
 <div class="testimonial-card">
 
+
 <div class="stars">
+
 ★★★★★
+
 </div>
 
+
 <p>
+
 "The song was such a beautiful surprise!
 It captured our story perfectly and made
 the moment unforgettable."
+
 </p>
+
 
 <div class="user">
 
+
 <div class="user-icon">
+
 <i class="bi bi-person-fill"></i>
+
 </div>
+
 
 <div>
-<strong>Kiran R.</strong>
+
+<strong>
+
+Kiran R.
+
+</strong>
+
 <br>
-<small>Happy Customer</small>
+
+<small>
+
+Happy Customer
+
+</small>
+
 </div>
+
+
+</div>
+
 
 </div>
 
 </div>
 
-</div>
 
 
 <div class="col-md-4">
 
+
 <div class="testimonial-card">
 
+
 <div class="stars">
+
 ★★★★★
+
 </div>
 
+
 <p>
+
 "I gave them a few memories and they
 turned them into something so emotional.
 Absolutely loved it!"
+
 </p>
+
 
 <div class="user">
 
+
 <div class="user-icon">
+
 <i class="bi bi-person-fill"></i>
+
 </div>
+
 
 <div>
-<strong>Priya M.</strong>
+
+<strong>
+
+Priya M.
+
+</strong>
+
 <br>
-<small>Happy Customer</small>
+
+<small>
+
+Happy Customer
+
+</small>
+
 </div>
+
+
+</div>
+
 
 </div>
 
 </div>
 
-</div>
 
 
 <div class="col-md-4">
 
+
 <div class="testimonial-card">
 
+
 <div class="stars">
+
 ★★★★★
+
 </div>
 
+
 <p>
+
 "The perfect gift! Everyone loved the song
 and the personal touch made it very special."
+
 </p>
+
 
 <div class="user">
 
+
 <div class="user-icon">
+
 <i class="bi bi-person-fill"></i>
+
 </div>
+
 
 <div>
-<strong>Asif K.</strong>
+
+<strong>
+
+Asif K.
+
+</strong>
+
 <br>
-<small>Happy Customer</small>
+
+<small>
+
+Happy Customer
+
+</small>
+
 </div>
+
+
+</div>
+
 
 </div>
 
 </div>
 
-</div>
 
 </div>
 
@@ -1414,106 +2840,425 @@ and the personal touch made it very special."
 </section>
 
 
-<!-- CTA -->
+
+<!-- =====================================================
+     CTA
+===================================================== -->
 
 <section class="container">
 
+
 <div class="cta">
 
+
 <h2>
+
 Ready to Create Your Song? 🎶
+
 </h2>
 
+
 <p>
-Your story is unique. Your song should be too.
+
+Your story is unique.
+Your song should be too.
+
 </p>
 
-<a href="create1.html" class="btn">
-Start Creating
+
+<a
+    href="create1.html"
+    class="btn">
+
+    Start Creating
+
     <i class="bi bi-arrow-right"></i>
+
 </a>
+
 
 </div>
 
 </section>
 
 
-<!-- FOOTER -->
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
+
 <div class="container">
 
+
 <p>
+
 Made with 💗 for music lovers.
+
 </p>
 
+
 <p class="mt-2">
+
 <i class="bi bi-envelope"></i>
+
 support@createyoursong.com
+
 </p>
+
 
 </div>
 
 </footer>
 
+
 </div>
 
 
-<!-- BOOTSTRAP JS -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
 
-<!-- LOGIN SCRIPT -->
 
 <script>
 
-document.getElementById("loginForm").addEventListener("submit", function(event) {
+/* =====================================================
+   PAGE LOAD
+===================================================== */
 
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const message = document.getElementById("loginMessage");
 
-    if (email === "" || password === "") {
+    const loginPage =
+        document.getElementById("loginPage");
 
-        message.style.color = "#e0357a";
-        message.textContent = "Please fill all fields.";
 
-        return;
+    const website =
+        document.getElementById("website");
+
+
+    /*
+       Check whether Reviews page asked
+       index.html to open directly.
+    */
+
+    const skipLogin =
+        localStorage.getItem("skipLoginOnce");
+
+
+    if (skipLogin === "true") {
+
+
+        /* Remove the flag */
+
+        localStorage.removeItem("skipLoginOnce");
+
+
+        /* Hide login */
+
+        loginPage.style.display = "none";
+
+
+        /* Show website */
+
+        website.style.display = "block";
+
+
+        /* Start at Home */
+
+        window.scrollTo(0, 0);
+
+
     }
 
-    if (password.length < 6) {
+    else {
 
-        message.style.color = "#e0357a";
-        message.textContent =
-        "Password must contain at least 6 characters.";
 
-        return;
+        /* Normal opening */
+
+        loginPage.style.display = "flex";
+
+
+        website.style.display = "none";
+
     }
-
-    message.style.color = "#c92666";
-    message.innerHTML =
-    "✓ Login successful! Welcome to CreateYourSong 💗";
-
-    setTimeout(function() {
-
-        document.getElementById("loginPage").style.display = "none";
-
-        document.getElementById("website").style.display = "block";
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }, 900);
 
 });
 
+
+
+/* =====================================================
+   PASSWORD SHOW / HIDE
+===================================================== */
+
+const passwordInput =
+    document.getElementById("password");
+
+
+const passwordToggle =
+    document.getElementById("passwordToggle");
+
+
+passwordToggle.addEventListener(
+    "click",
+    function () {
+
+
+        if (
+            passwordInput.type === "password"
+        ) {
+
+
+            passwordInput.type = "text";
+
+
+            passwordToggle.innerHTML =
+                '<i class="bi bi-eye-slash"></i>';
+
+
+        }
+
+        else {
+
+
+            passwordInput.type = "password";
+
+
+            passwordToggle.innerHTML =
+                '<i class="bi bi-eye"></i>';
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   LOGIN FORM
+===================================================== */
+
+document
+.getElementById("loginForm")
+.addEventListener(
+    "submit",
+    function(event) {
+
+
+        event.preventDefault();
+
+
+        const email =
+            document
+            .getElementById("email")
+            .value
+            .trim();
+
+
+        const password =
+            document
+            .getElementById("password")
+            .value
+            .trim();
+
+
+        const message =
+            document
+            .getElementById("loginMessage");
+
+
+        const remember =
+            document
+            .getElementById("remember")
+            .checked;
+
+
+
+        /* =========================================
+           EMPTY CHECK
+        ========================================= */
+
+        if (
+            email === "" ||
+            password === ""
+        ) {
+
+
+            message.style.color =
+                "#e0357a";
+
+
+            message.textContent =
+                "Please fill all fields.";
+
+
+            return;
+
+        }
+
+
+
+        /* =========================================
+           EMAIL VALIDATION
+        ========================================= */
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (
+            !emailPattern.test(email)
+        ) {
+
+
+            message.style.color =
+                "#e0357a";
+
+
+            message.textContent =
+                "Please enter a valid email address.";
+
+
+            return;
+
+        }
+
+
+
+        /* =========================================
+           PASSWORD LENGTH
+        ========================================= */
+
+        if (
+            password.length < 8
+        ) {
+
+
+            message.style.color =
+                "#e0357a";
+
+
+            message.textContent =
+                "Password must contain at least 8 characters.";
+
+
+            return;
+
+        }
+
+
+
+        /* =========================================
+           PASSWORD SECURITY
+        ========================================= */
+
+        const hasUppercase =
+            /[A-Z]/.test(password);
+
+
+        const hasLowercase =
+            /[a-z]/.test(password);
+
+
+        const hasNumber =
+            /[0-9]/.test(password);
+
+
+        const hasSpecial =
+            /[^A-Za-z0-9]/.test(password);
+
+
+
+        if (
+            !hasUppercase ||
+            !hasLowercase ||
+            !hasNumber ||
+            !hasSpecial
+        ) {
+
+
+            message.style.color =
+                "#e0357a";
+
+
+            message.innerHTML =
+                "Password must contain uppercase, lowercase, number and special character.";
+
+
+            return;
+
+        }
+
+
+
+        /* =========================================
+           LOGIN SUCCESS
+        ========================================= */
+
+        message.style.color =
+            "#c92666";
+
+
+        message.innerHTML =
+            "✓ Login successful! Welcome to CreateYourSong 💗";
+
+
+
+        /*
+           If Remember Me is selected,
+           save the login state.
+        */
+
+        if (remember) {
+
+
+            localStorage.setItem(
+                "createYourSongLoggedIn",
+                "true"
+            );
+
+        }
+
+
+
+        /* =========================================
+           OPEN WEBSITE
+        ========================================= */
+
+        setTimeout(
+            function () {
+
+
+                loginPage.style.display =
+                    "none";
+
+
+                website.style.display =
+                    "block";
+
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+
+
+            },
+            900
+        );
+
+    }
+);
+
 </script>
 
+
 </body>
+
 </html>
